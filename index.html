@@ -4,503 +4,84 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Zayd Houachmi | Mechanical Engineering</title>
-<meta name="description" content="Portfolio of Zayd Houachmi, mechanical engineering student at the University of Ottawa: SolidWorks product design, wind resource assessment and wake modelling, and a sensor-controlled swab dryer for the Ottawa Police.">
+<meta name="description" content="Zayd Houachmi, mechanical engineering student at the University of Ottawa. SolidWorks product design, wind farm energy-yield modelling in WAsP and Python, and prototyping for real clients.">
+<meta name="author" content="Zayd Houachmi">
+<link rel="canonical" href="https://zaydhouachmi.github.io/">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Zayd Houachmi | Mechanical Engineering">
-<meta property="og:description" content="SolidWorks product design, wind farm energy-yield modelling with WAsP and Python, and mechanical design of a forensic swab dryer.">
+<meta property="og:description" content="SolidWorks product design, wind farm energy-yield modelling, and prototypes built and tested for real clients.">
 <meta property="og:image" content="https://zaydhouachmi.github.io/assets/shield-render.jpg">
 <meta property="og:url" content="https://zaydhouachmi.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0A2342">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%230A2342'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23FF8148' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%23EAF2FB'/%3E%3C/svg%3E">
+<script>try{var t=localStorage.getItem('zh-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:wght@800&family=Big+Shoulders:wght@600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  /*
-    Layout: the site is one technical drawing set. Each section is a
-    "sheet" with a numbered label; each project opens with a title block
-    (client, date, role, tools), a strip of key readings, then the
-    write-up beside its figures. Light = graphite on vellum; dark = blueprint.
-  */
-  :root {
-    --bg: #ECEEEA;
-    --surface: #F8F9F6;
-    --plate: #FFFFFF;
-    --fg: #18222D;
-    --muted: #56616E;
-    --grid: rgba(24,34,45,.075);
-    --rule: rgba(24,34,45,.18);
-    --line: #18222D;
-    --accent: #C9461B;
-    --accent-soft: rgba(201,70,27,.1);
-    --accent-contrast: #FFFFFF;
-    --font-display: 'Big Shoulders Stencil', 'Big Shoulders', 'Arial Narrow', sans-serif;
-    --font-head: 'Big Shoulders', 'Arial Narrow', sans-serif;
-    --font-body: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', sans-serif;
-    --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
-    color-scheme: light;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #0A2342;
-      --surface: #0F2B4F;
-      --plate: #E8EDF2;
-      --fg: #EAF2FB;
-      --muted: #97AFCB;
-      --grid: rgba(207,228,247,.085);
-      --rule: rgba(207,228,247,.22);
-      --line: #CFE4F7;
-      --accent: #FF8148;
-      --accent-soft: rgba(255,129,72,.13);
-      --accent-contrast: #0A2342;
-      color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #0A2342;
-    --surface: #0F2B4F;
-    --plate: #E8EDF2;
-    --fg: #EAF2FB;
-    --muted: #97AFCB;
-    --grid: rgba(207,228,247,.085);
-    --rule: rgba(207,228,247,.22);
-    --line: #CFE4F7;
-    --accent: #FF8148;
-    --accent-soft: rgba(255,129,72,.13);
-    --accent-contrast: #0A2342;
-    color-scheme: dark;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--fg);
-    font-family: var(--font-body);
-    font-size: 17px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-  img { max-width: 100%; display: block; }
-  a { color: inherit; }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-
-  .sheet {
-    min-height: 100vh;
-    padding: 0 clamp(16px, 5vw, 56px) 56px;
-    background-image:
-      linear-gradient(var(--grid) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-    background-size: 28px 28px;
-  }
-  .wrap { max-width: 1080px; margin: 0 auto; }
-
-  /* Header */
-  header.bar {
-    position: sticky;
-    top: env(safe-area-inset-top, 0px);
-    z-index: 10;
-    background: var(--bg);
-    border-bottom: 1px solid var(--rule);
-  }
-  header.bar .wrap {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px 20px;
-    flex-wrap: wrap;
-    padding-block: 14px;
-  }
-  .wordmark {
-    font-family: var(--font-head);
-    font-weight: 800;
-    font-size: 1.15rem;
-    letter-spacing: .05em;
-    text-transform: uppercase;
-    text-decoration: none;
-  }
-  .wordmark span { color: var(--accent); }
-  .nav { display: flex; align-items: center; gap: 6px 22px; flex-wrap: wrap; }
-  .nav a {
-    font-family: var(--font-mono);
-    font-size: .76rem;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--muted);
-    padding-block: 4px;
-    border-bottom: 1px solid transparent;
-  }
-  .nav a:hover { color: var(--fg); border-color: var(--accent); }
-  #theme-toggle {
-    font: inherit;
-    font-family: var(--font-mono);
-    font-size: .7rem;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-    color: var(--muted);
-    background: transparent;
-    border: 1px solid var(--rule);
-    border-radius: 3px;
-    padding: 6px 10px;
-    cursor: pointer;
-  }
-  #theme-toggle:hover { color: var(--fg); border-color: var(--accent); }
-
-  /* Shared labels */
-  .label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-family: var(--font-mono);
-    font-size: .72rem;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-  .label::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
-  .eyebrow {
-    font-family: var(--font-mono);
-    font-size: .72rem;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  section.block { padding-block: 64px; border-top: 1px solid var(--rule); }
-  h2 {
-    font-family: var(--font-head);
-    font-weight: 800;
-    font-size: clamp(2rem, 5vw, 2.9rem);
-    line-height: 1;
-    letter-spacing: .01em;
-    text-transform: uppercase;
-    margin: 14px 0 28px;
-    text-wrap: balance;
-  }
-  h3 {
-    font-family: var(--font-head);
-    font-weight: 700;
-    font-size: 1.3rem;
-    letter-spacing: .02em;
-    text-transform: uppercase;
-    margin: 0 0 10px;
-  }
-  p { margin: 0; }
-  .prose { display: grid; gap: 14px; max-width: 64ch; }
-  .prose strong { font-weight: 600; }
-
-  /* Hero */
-  .hero { padding-block: 72px 64px; }
-  .hero-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-    gap: 40px;
-    align-items: end;
-  }
-  .hero h1 {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: clamp(3.6rem, 12vw, 8.4rem);
-    line-height: .88;
-    letter-spacing: .005em;
-    text-transform: uppercase;
-    margin: 18px 0 18px;
-  }
-  .hero .role {
-    font-family: var(--font-head);
-    font-weight: 700;
-    font-size: clamp(1.2rem, 2.6vw, 1.55rem);
-    letter-spacing: .04em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 14px;
-  }
-  .hero .tagline { font-size: 1.18rem; color: var(--muted); max-width: 36em; margin-bottom: 30px; }
-  .cta { display: flex; flex-wrap: wrap; gap: 12px; }
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-mono);
-    font-size: .8rem;
-    letter-spacing: .05em;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 11px 18px;
-    border: 1.5px solid var(--line);
-    border-radius: 3px;
-    transition: border-color .15s, color .15s, background-color .15s;
-  }
-  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-contrast); }
-  .btn.primary:hover { filter: brightness(1.06); }
-  .btn:not(.primary):hover { border-color: var(--accent); color: var(--accent); }
-
-  .titleblock {
-    border: 1.5px solid var(--line);
-    background: var(--rule);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    font-family: var(--font-mono);
-    font-size: .8rem;
-  }
-  .titleblock > div { padding: 10px 14px; background: var(--surface); min-width: 0; }
-  .titleblock > div.full { grid-column: 1 / -1; }
-  .titleblock .k {
-    display: block;
-    font-size: .62rem;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 2px;
-  }
-  .titleblock .big { font-family: var(--font-head); font-weight: 800; font-size: 1.25rem; letter-spacing: .03em; text-transform: uppercase; }
-
-  /* Project index */
-  .index {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-    gap: 18px;
-    margin-bottom: 8px;
-  }
-  .index a {
-    display: grid;
-    grid-template-columns: 112px minmax(0, 1fr);
-    gap: 16px;
-    align-items: center;
-    text-decoration: none;
-    border: 1.5px solid var(--rule);
-    background: var(--surface);
-    padding: 12px;
-    border-radius: 4px;
-    transition: border-color .15s, transform .15s;
-  }
-  .index a:hover { border-color: var(--accent); transform: translateY(-2px); }
-  .index .thumb { aspect-ratio: 1; background: var(--plate); overflow: hidden; border-radius: 2px; }
-  .index .thumb img { width: 100%; height: 100%; object-fit: cover; }
-  .index h3 { font-size: 1.12rem; margin: 4px 0 4px; }
-  .index p { font-size: .92rem; color: var(--muted); line-height: 1.45; }
-
-  /* Case study */
-  .case { padding-top: 56px; }
-  .case + .case { margin-top: 40px; border-top: 1px dashed var(--rule); }
-  .case-head {
-    display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-    gap: 32px;
-    align-items: start;
-    margin-bottom: 30px;
-  }
-  .case-head h3.title {
-    font-family: var(--font-head);
-    font-weight: 800;
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    line-height: 1.02;
-    margin: 10px 0 16px;
-    text-wrap: balance;
-  }
-  .case-head .lede { font-size: 1.08rem; color: var(--muted); max-width: 52ch; }
-
-  .readings {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    border: 1.5px solid var(--line);
-    margin-bottom: 40px;
-    background: var(--surface);
-  }
-  .readings > div { padding: 16px 18px; border-right: 1px solid var(--rule); min-width: 0; }
-  .readings > div:last-child { border-right: none; }
-  .readings .v {
-    font-family: var(--font-head);
-    font-weight: 800;
-    font-size: clamp(1.6rem, 3.4vw, 2.15rem);
-    line-height: 1.05;
-    font-variant-numeric: tabular-nums;
-    color: var(--fg);
-  }
-  .readings .v small { font-size: .55em; font-weight: 700; color: var(--accent); margin-left: 2px; letter-spacing: .02em; }
-  .readings .d { font-size: .86rem; color: var(--muted); margin-top: 6px; line-height: 1.4; }
-
-  .case-body {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 40px;
-    align-items: start;
-  }
-  .stack { display: grid; gap: 30px; min-width: 0; }
-  ul.points { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
-  ul.points li { position: relative; padding-left: 22px; }
-  ul.points li::before {
-    content: "";
-    position: absolute;
-    left: 0; top: .72em;
-    width: 11px; height: 1.5px;
-    background: var(--accent);
-  }
-
-  figure { margin: 0; min-width: 0; }
-  .plate {
-    background: var(--plate);
-    border: 1px solid var(--rule);
-    padding: 10px;
-    border-radius: 2px;
-  }
-  .plate img { width: 100%; height: auto; margin: 0 auto; }
-  .plate.photo { padding: 0; overflow: hidden; }
-  .plate.photo img { width: 100%; height: 100%; object-fit: cover; }
-  figcaption {
-    font-family: var(--font-mono);
-    font-size: .72rem;
-    letter-spacing: .02em;
-    color: var(--muted);
-    margin-top: 8px;
-    line-height: 1.45;
-  }
-  figcaption b { color: var(--accent); font-weight: 500; }
-  .fig-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .fig-pair .plate.photo { aspect-ratio: 4 / 3; }
-
-  .table-wrap { overflow-x: auto; border: 1px solid var(--rule); background: var(--surface); }
-  table { width: 100%; border-collapse: collapse; font-size: .9rem; }
-  th, td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--rule); vertical-align: top; }
-  tr:last-child td { border-bottom: none; }
-  th {
-    font-family: var(--font-mono);
-    font-size: .66rem;
-    font-weight: 500;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    background: var(--accent-soft);
-  }
-  td.mono, td code { font-family: var(--font-mono); font-size: .82rem; white-space: nowrap; }
-  td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
-
-  .calc {
-    border: 1.5px solid var(--line);
-    background: var(--surface);
-    padding: 16px 18px;
-    font-family: var(--font-mono);
-    font-size: .86rem;
-    line-height: 1.8;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-  .calc .k { color: var(--muted); }
-  .calc .ok { color: var(--accent); }
-
-  .note {
-    border-left: 2px solid var(--accent);
-    padding: 4px 0 4px 16px;
-    color: var(--muted);
-    font-size: .96rem;
-  }
-  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-  .tag {
-    font-family: var(--font-mono);
-    font-size: .72rem;
-    letter-spacing: .03em;
-    padding: 4px 9px;
-    border: 1px solid var(--rule);
-    border-radius: 2px;
-    color: var(--muted);
-    background: var(--surface);
-  }
-
-  /* About / skills */
-  .about-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 48px; align-items: start; }
-  .skills { display: grid; gap: 22px; }
-  .skills h4 {
-    font-family: var(--font-mono);
-    font-size: .7rem;
-    font-weight: 500;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin: 0 0 10px;
-  }
-
-  .contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: end; }
-  .contact-grid p { max-width: 46ch; color: var(--muted); font-size: 1.08rem; }
-
-  footer {
-    border-top: 1px solid var(--rule);
-    padding-top: 22px;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px 20px;
-    font-family: var(--font-mono);
-    font-size: .72rem;
-    letter-spacing: .04em;
-    color: var(--muted);
-  }
-
-  /* Responsive */
-  @media (max-width: 880px) {
-    .hero-grid, .case-head, .case-body, .about-grid { grid-template-columns: minmax(0, 1fr); }
-    .readings { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .readings > div:nth-child(2) { border-right: none; }
-    .readings > div:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
-    .contact-grid { grid-template-columns: minmax(0, 1fr); }
-  }
-  @media (max-width: 480px) {
-    body { font-size: 16px; }
-    .index a { grid-template-columns: 84px minmax(0, 1fr); }
-    .fig-pair { grid-template-columns: 1fr; }
-    .readings .v { font-size: 1.5rem; }
-  }
-
-  /* Motion */
-  @media (prefers-reduced-motion: no-preference) {
-    .rise { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
-    .rise.d1 { animation-delay: .08s; }
-    .rise.d2 { animation-delay: .16s; }
-    .rise.d3 { animation-delay: .24s; }
-    @keyframes rise { from { opacity: .4; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-  }
-</style>
+<link rel="stylesheet" href="assets/site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Zayd Houachmi","jobTitle":"Mechanical Engineering Student","affiliation":{"@type":"CollegeOrUniversity","name":"University of Ottawa"},"url":"https://zaydhouachmi.github.io/","sameAs":["https://www.linkedin.com/in/zayd-houachmi-b5578735a/","https://github.com/ZaydHouachmi"],"knowsAbout":["SolidWorks","Mechanical design","Wind resource assessment","WAsP","Python"]}
+</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <div class="sheet">
   <header class="bar">
     <div class="wrap">
       <a class="wordmark" href="#top">Zayd <span>Houachmi</span></a>
       <nav class="nav" aria-label="Sections">
         <a href="#work">Work</a>
-        <a href="#about">About</a>
+        <a href="#model">Live model</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
-        <button id="theme-toggle" type="button" aria-pressed="false">Blueprint</button>
+        <button class="theme-toggle" type="button" aria-pressed="false">Blueprint</button>
       </nav>
     </div>
   </header>
 
-  <main class="wrap" id="top">
+  <main class="wrap" id="main">
     <!-- Hero -->
-    <section class="hero">
+    <section class="hero" id="top">
       <div class="label rise">Sheet 01 · Profile</div>
       <div class="hero-grid">
         <div>
           <h1 class="rise d1">Zayd<br>Houachmi</h1>
           <p class="role rise d2">Mechanical Engineering · University of Ottawa</p>
-          <p class="tagline rise d2">I like problems with a physical answer: a turbine that has to produce, a part that has to fit, airflow that has to be just enough. I model it, build it, then test whether I was right.</p>
+          <p class="pitch rise d2">I design parts in <em>SolidWorks</em>, model energy systems in <em>Python</em>, and test both against real numbers: from a wind farm's annual output to a clip that has to hold on a pair of glasses.</p>
           <div class="cta rise d3">
-            <a class="btn primary" href="#work">See my work</a>
+            <a class="btn primary" href="#work">See my work ↓</a>
             <a class="btn" href="https://www.linkedin.com/in/zayd-houachmi-b5578735a/" target="_blank" rel="noopener">LinkedIn ↗</a>
             <a class="btn" href="https://github.com/ZaydHouachmi" target="_blank" rel="noopener">GitHub ↗</a>
           </div>
+          <p class="rise d4" style="margin-top: 26px;"><span class="status"><i aria-hidden="true"></i>Open to internships</span></p>
         </div>
-        <div class="titleblock rise d3" aria-label="Profile summary">
-          <div class="full"><span class="k">Drawn by</span><span class="big">Z. Houachmi</span></div>
-          <div><span class="k">Discipline</span>Mechanical Eng.</div>
-          <div><span class="k">Year</span>2nd year</div>
-          <div><span class="k">Institution</span>uOttawa</div>
-          <div><span class="k">Languages</span>FR · EN</div>
-          <div><span class="k">CAD</span>SolidWorks</div>
-          <div><span class="k">Status</span>Open to internships</div>
-          <div class="full"><span class="k">Sheet</span>01 of 04 · Rev B · Scale 1:1</div>
-        </div>
+
+        <figure class="dwg rise d3" aria-label="Current project drawing">
+          <div class="zones top" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span></div>
+          <div class="zones bottom" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span></div>
+          <div class="zones left" aria-hidden="true"><span>A</span><span>B</span><span>C</span></div>
+          <div class="zones right" aria-hidden="true"><span>A</span><span>B</span><span>C</span></div>
+          <div class="view">
+            <img src="assets/shield-render.jpg" width="1400" height="932" alt="Render of the clip-on visual shield mounted on glasses, with one lower flap removed" fetchpriority="high">
+            <span class="callout" style="left: 50%; top: 13%;">Top panel · 50 mm</span>
+            <span class="callout" style="left: 3%; top: 70%;">Side panel</span>
+            <span class="callout" style="left: 47%; top: 86%;">Removable flap</span>
+          </div>
+          <div class="tb">
+            <div><span class="k">Part</span>Visual shield assembly</div>
+            <div><span class="k">File</span>ASSEMBLAGE.SLDASM</div>
+            <div><span class="k">Material</span>PLA 1.5 mm · TPU</div>
+          </div>
+        </figure>
+      </div>
+
+      <div class="readings glance rise d4">
+        <div><div class="v">3<small>projects</small></div><div class="d">Engineering projects, two of them for real clients</div></div>
+        <div><div class="v">1<small>internship</small></div><div class="d">Wind resource engineering at Greenard, Casablanca</div></div>
+        <div><div class="v">CAD<small>SolidWorks</small></div><div class="d">Parts, assemblies and mates, designed for 3D printing</div></div>
+        <div><div class="v">FR·EN</div><div class="d">Technical reports and manuals in both languages</div></div>
       </div>
     </section>
 
@@ -508,394 +89,179 @@
     <section class="block" id="work">
       <div class="label">Sheet 02 · Work</div>
       <h2>Selected projects</h2>
+      <p class="section-intro">Three projects, each with a client or an industry problem behind it. Every one has numbers I had to hit and tests to prove it.</p>
 
-      <div class="index">
-        <a href="#shield">
-          <div class="thumb"><img src="assets/shield-cad-render.jpg" alt="" loading="lazy"></div>
-          <div>
-            <span class="eyebrow">Design project · 2026</span>
+      <div class="features">
+        <a class="feature" href="work/visual-shield.html">
+          <div class="media"><img src="assets/shield-solidworks.jpg" alt="SolidWorks assembly of the visual shield" loading="lazy"></div>
+          <div class="body">
+            <div class="num"><span class="eyebrow">01 · CAD &amp; product design</span><span class="eyebrow">Fall 2026</span></div>
             <h3>Clip-on visual shield</h3>
-            <p>SolidWorks assembly of a foldable shield that blocks peripheral vision.</p>
+            <p class="sum">A light, foldable shield that clips onto prescription glasses and blocks distracting peripheral vision for a student with a sensory processing disorder. Modelled in SolidWorks around a reference frame.</p>
+            <div class="readings three compact">
+              <div><div class="v">≤20<small>g</small></div><div class="d">Mass target</div></div>
+              <div><div class="v">≤80<small>°</small></div><div class="d">Horizontal view</div></div>
+              <div><div class="v">$39.95</div><div class="d">BOM, $50 budget</div></div>
+            </div>
+            <div class="tags"><span class="tag hot">SolidWorks</span><span class="tag">Assemblies</span><span class="tag">PLA / TPU</span><span class="tag">Test planning</span></div>
+            <span class="go">Read the case study <span>→</span></span>
           </div>
         </a>
-        <a href="#greenard">
-          <div class="thumb"><img src="assets/greenard-grid.png" alt="" loading="lazy"></div>
-          <div>
-            <span class="eyebrow">Internship · 2026</span>
+
+        <a class="feature flip" href="work/wind-farm.html">
+          <div class="media contain"><img src="assets/greenard-grid.png" alt="WAsP wind resource grid over terrain contours" loading="lazy"></div>
+          <div class="body">
+            <div class="num"><span class="eyebrow">02 · Wind resource engineering</span><span class="eyebrow">Summer 2026</span></div>
             <h3>Wind farm energy yield</h3>
-            <p>WAsP resource study plus my own Python wake and AEP model.</p>
+            <p class="sum">Internship at Greenard in Casablanca. I ran the full WAsP workflow from a 10&nbsp;m mast to a turbine's annual energy, then built my own Python wake and energy-yield tool and validated it against WAsP.</p>
+            <div class="readings three compact">
+              <div><div class="v">4.9→7.9<small>m/s</small></div><div class="d">Mast to hub height</div></div>
+              <div><div class="v">3.149<small>GWh</small></div><div class="d">Net yearly energy</div></div>
+              <div><div class="v">0.0<small>%</small></div><div class="d">Error vs WAsP mean</div></div>
+            </div>
+            <div class="tags"><span class="tag hot">Python</span><span class="tag">WAsP</span><span class="tag">Wake models</span><span class="tag">Streamlit</span></div>
+            <span class="go">Read the case study <span>→</span></span>
           </div>
         </a>
-        <a href="#zeiku">
-          <div class="thumb"><img src="assets/zeiku-prototype.jpg" alt="" loading="lazy"></div>
-          <div>
-            <span class="eyebrow">Design project · 2025</span>
+
+        <a class="feature" href="work/zeiku.html">
+          <div class="media"><img src="assets/zeiku-fan.jpg" alt="ZEIKU swab dryer with its 3D-printed fan mount" loading="lazy"></div>
+          <div class="body">
+            <div class="num"><span class="eyebrow">03 · Mechanical design &amp; prototyping</span><span class="eyebrow">Fall 2025</span></div>
             <h3>ZEIKU swab dryer</h3>
-            <p>Sealed, sensor-controlled DNA swab dryer for the Ottawa Police.</p>
+            <p class="sum">A sealed, portable box for the Ottawa Police that dries two DNA swabs without cross-contamination and signals when each one is dry. I worked on the mechanical side: enclosure, rails and ventilation.</p>
+            <div class="readings three compact">
+              <div><div class="v">≥3<small>cm</small></div><div class="d">Spacing, from testing</div></div>
+              <div><div class="v">2.6<small>CFM</small></div><div class="d">Airflow sized</div></div>
+              <div><div class="v">0<small>tools</small></div><div class="d">To take apart and clean</div></div>
+            </div>
+            <div class="tags"><span class="tag hot">Mechanical design</span><span class="tag">3D printing</span><span class="tag">Laser cutting</span><span class="tag">Testing</span></div>
+            <span class="go">Read the case study <span>→</span></span>
           </div>
         </a>
       </div>
-
-      <!-- Project 01: Visual shield -->
-      <article class="case" id="shield">
-        <div class="case-head">
-          <div>
-            <span class="eyebrow">Project 01 · CAD &amp; product design</span>
-            <h3 class="title">A clip-on visual shield for prescription glasses</h3>
-            <p class="lede">A student with a sensory processing disorder is distracted in class by movement, screens and lights at the edge of their vision. Their current fix (modified lab goggles, a mask and a hood) is uncomfortable and doesn't work well. We're designing a light, foldable shield that clips onto their own glasses, blocks the top, sides and bottom, and keeps the view to the front clear.</p>
-          </div>
-          <div class="titleblock">
-            <div class="full"><span class="k">CAD</span><span class="big">SolidWorks</span></div>
-            <div><span class="k">Course</span>GNG2501 · uOttawa</div>
-            <div><span class="k">Date</span>Fall 2026</div>
-            <div><span class="k">Team</span>5 students</div>
-            <div><span class="k">Status</span>Prototype in progress</div>
-          </div>
-        </div>
-
-        <div class="readings">
-          <div><div class="v">≤80<small>°</small></div><div class="d">Horizontal field-of-view target (≤120° acceptable)</div></div>
-          <div><div class="v">≤20<small>g</small></div><div class="d">Mass target for the whole device (≤40&nbsp;g acceptable)</div></div>
-          <div><div class="v">1.5<small>mm</small></div><div class="d">Matte black PLA monocoque wall, 50&nbsp;mm flaps</div></div>
-          <div><div class="v">$39.95</div><div class="d">Current bill of materials, against a $50 budget</div></div>
-        </div>
-
-        <div class="case-body">
-          <div class="stack">
-            <div class="prose">
-              <h3>The SolidWorks model</h3>
-              <p>The full assembly is modelled in SolidWorks around a <strong>reference frame</strong>, so the fit on the glasses can be checked before anything is printed. Each part is its own component, mated to the frame, which keeps the panels interchangeable.</p>
-            </div>
-
-            <div class="table-wrap">
-              <table>
-                <thead><tr><th>Component</th><th>Function</th><th>Material</th></tr></thead>
-                <tbody>
-                  <tr><td>Front chassis</td><td>Monocoque shell with a 50&nbsp;mm top flap that blocks overhead lights</td><td class="mono">PLA 1.5 mm</td></tr>
-                  <tr><td>Side panels L/R</td><td>Block peripheral vision and stop short of the headphone cushions</td><td class="mono">PLA</td></tr>
-                  <tr><td>Lower flaps ×2</td><td>Removable one at a time, to block the bottom or let them read notes</td><td class="mono">PLA</td></tr>
-                  <tr><td>Clips</td><td>Hold the panels on the frame without modifying the glasses</td><td class="mono">TPU</td></tr>
-                  <tr><td>Light filters</td><td>Three tints (grey, dark, orange) for bright light and screens</td><td class="mono">PVC 0.3 mm</td></tr>
-                  <tr><td>Frame</td><td>Reference geometry the assembly is mated to</td><td class="mono">Reference</td></tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="prose">
-              <h3>From client needs to specs</h3>
-              <ul class="points">
-                <li><strong>See the teacher and read:</strong> open centre, horizontal field of view ≤80°.</li>
-                <li><strong>Block top, sides and bottom:</strong> panels on three sides, vertical field of view ≤110°.</li>
-                <li><strong>No skin contact</strong> and <strong>keep the noise-cancelling headphones:</strong> clearance around the face, nothing in the cushion zone.</li>
-                <li><strong>Light and portable:</strong> thin walls, and panels that fold toward the temples on flexible TPU zones.</li>
-                <li><strong>No fogging:</strong> venting around the lenses for ≥120&nbsp;min of wear (≥60&nbsp;min acceptable).</li>
-              </ul>
-            </div>
-
-            <div class="prose">
-              <h3>Test plan</h3>
-              <div class="table-wrap">
-                <table>
-                  <thead><tr><th>Test</th><th>Method</th><th>Pass</th></tr></thead>
-                  <tbody>
-                    <tr><td>Attachment</td><td>20 head movements, 20 on/off cycles</td><td>No detachment, frame intact</td></tr>
-                    <tr><td>Field of view</td><td>Protractor, object moved along an arc</td><td>≤80° · ≤120°</td></tr>
-                    <tr><td>Folding</td><td>50 fold/unfold cycles</td><td>No cracks or play</td></tr>
-                    <tr><td>Headphones</td><td>Worn with the client's own headset</td><td>Compatible, no discomfort</td></tr>
-                    <tr><td>Mass</td><td>Scale, complete device</td><td>≤20&nbsp;g · ≤40&nbsp;g</td></tr>
-                    <tr><td>Fog &amp; comfort</td><td>Continuous wear, then a survey</td><td>≥60&nbsp;min, comfort ≥8/10</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <div class="note"><strong>Next.</strong> Model the clips in SolidWorks and add an exploded view (Oct 21–23), print and assemble (Oct 24–28), test with the client on Oct 30, then adjust by Nov 1. During testing the client installs and handles the device themselves.</div>
-          </div>
-
-          <div class="stack">
-            <figure>
-              <div class="plate photo"><img src="assets/shield-solidworks.jpg" alt="SolidWorks assembly window showing the shield: front chassis, side panels and lower flaps mated to a reference glasses frame, with the feature tree on the left" loading="lazy"></div>
-              <figcaption><b>Fig. 1.1</b> SolidWorks assembly: chassis, side panels and lower flaps mated to the reference frame.</figcaption>
-            </figure>
-            <div class="fig-pair">
-              <figure>
-                <div class="plate photo"><img src="assets/shield-render.jpg" alt="Render of the shield on glasses with one lower flap removed" loading="lazy"></div>
-                <figcaption><b>Fig. 1.2</b> Concept render, with one lower flap removed.</figcaption>
-              </figure>
-              <figure>
-                <div class="plate photo"><img src="assets/shield-modules.jpg" alt="Render of the shield with three interchangeable tinted light filters: orange, grey and dark" loading="lazy"></div>
-                <figcaption><b>Fig. 1.3</b> Interchangeable light filters in three tints.</figcaption>
-              </figure>
-            </div>
-            <figure>
-              <div class="plate photo" style="aspect-ratio: 1; max-height: 460px;"><img src="assets/shield-cad-render.jpg" alt="Shaded SolidWorks view of the shield assembly" loading="lazy"></div>
-              <figcaption><b>Fig. 1.4</b> Shaded view of the assembly.</figcaption>
-            </figure>
-            <div class="tags" aria-label="Skills used">
-              <span class="tag">SolidWorks</span><span class="tag">Assembly &amp; mates</span><span class="tag">Design for 3D printing</span><span class="tag">PLA / TPU</span><span class="tag">Specs from client needs</span><span class="tag">Test planning</span><span class="tag">Bill of materials</span>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- Project 02: Greenard -->
-      <article class="case" id="greenard">
-        <div class="case-head">
-          <div>
-            <span class="eyebrow">Project 02 · Wind resource engineering</span>
-            <h3 class="title">From a 10&nbsp;m mast to a wind farm's annual energy</h3>
-            <p class="lede">During a four-week internship at Greenard, a wind-energy studies firm in Casablanca, I learned the industry workflow for assessing a wind site in WAsP. Then I wrote my own Python tool that reproduces the core of it: wake models, Weibull integration and a loss cascade.</p>
-          </div>
-          <div class="titleblock">
-            <div class="full"><span class="k">Organisation</span>Greenard · Casablanca, Morocco</div>
-            <div><span class="k">Dates</span>Jun 22 – Jul 17, 2026</div>
-            <div><span class="k">Type</span>Internship</div>
-            <div class="full"><span class="k">Tools</span>WAsP 10 · Python · Streamlit</div>
-          </div>
-        </div>
-
-        <div class="readings">
-          <div><div class="v">4.90<small>m/s</small></div><div class="d">Mean wind measured at the station, 10&nbsp;m height</div></div>
-          <div><div class="v">7.85<small>m/s</small></div><div class="d">Predicted at turbine site 003, 50&nbsp;m hub height</div></div>
-          <div><div class="v">3.149<small>GWh/yr</small></div><div class="d">Net annual energy at site 003, 1.13% wake loss</div></div>
-          <div><div class="v">5.1→17.6<small>%</small></div><div class="d">Capacity factor of a 6&nbsp;MW farm, raw vs corrected wind climate</div></div>
-        </div>
-
-        <div class="case-body">
-          <div class="stack">
-            <div class="prose">
-              <h3>The problem</h3>
-              <p>Wind is measured at one mast, often low and in the wrong place, but turbines sit higher and on different terrain. Since power scales with <strong>V³</strong>, a 1&nbsp;m/s error in mean speed can make or break a project. The job is to carry a measurement correctly across height, terrain roughness and relief.</p>
-            </div>
-
-            <div class="prose">
-              <h3>What I did in WAsP</h3>
-              <ul class="points">
-                <li>Analysed the observed wind climate (12 direction sectors, Weibull fit per sector). West to north-west dominates, with over 32% of the time.</li>
-                <li>Generalised it into a Wind Atlas across 5 roughness classes and 5 heights, which removes the local effects of the measurement site.</li>
-                <li>Ran a 180-point resource grid at 50&nbsp;m over the "Crest" terrain. Mean speed ranges from 6.52 to 8.19&nbsp;m/s, and the best corridor follows the ridge.</li>
-                <li>Assessed a single turbine site in detail, with up to +14.3% speed-up from terrain in the 270° sector, and confirmed RIX&nbsp;=&nbsp;0% so the linear model stays valid.</li>
-              </ul>
-            </div>
-
-            <div class="prose">
-              <h3>The Python tool I built</h3>
-              <p>To really understand what WAsP does inside, I wrote a modular energy-yield model with a Streamlit front end. It integrates turbine output over every sector and every 1&nbsp;m/s speed bin of the Weibull distribution, then applies six post-wake losses (availability, electrical, turbine performance and others).</p>
-            </div>
-
-            <div class="table-wrap">
-              <table>
-                <thead><tr><th>Module</th><th>Responsibility</th></tr></thead>
-                <tbody>
-                  <tr><td class="mono">wake_model.py</td><td>Jensen (linear wake expansion) and Ainslie eddy-viscosity, solved with an RK45 integrator</td></tr>
-                  <tr><td class="mono">wind_resource.py</td><td>Wind rose with a Weibull distribution per sector</td></tr>
-                  <tr><td class="mono">wind_farm.py</td><td>Downwind and crosswind distances for every turbine pair</td></tr>
-                  <tr><td class="mono">power_curve.py</td><td>Cut-in, ramp-up, rated plateau and cut-out</td></tr>
-                  <tr><td class="mono">energy_yield.py</td><td>Per-turbine AEP, loss cascade and capacity factor</td></tr>
-                  <tr><td class="mono">app.py</td><td>Streamlit interface for layout, wind rose and loss inputs</td></tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="note"><strong>Validation.</strong> Fed the station's sector table, the tool recomputes a 4.90&nbsp;m/s mean, which matches WAsP exactly. I also found its limit: putting all the wind in one direction exaggerates wake losses (62% on the third turbine in a row) compared with 1.13% when WAsP uses all 12 real sectors. That showed me why a realistic wind rose matters.</div>
-          </div>
-
-          <div class="stack">
-            <figure>
-              <div class="plate"><img src="assets/greenard-grid.png" alt="WAsP resource grid map: mean wind speed at 50 m over the Crest terrain, overlaid on contour lines, ranging from 6.52 to 8.19 m/s" loading="lazy"></div>
-              <figcaption><b>Fig. 2.1</b> Resource grid "Crest", mean speed at 50&nbsp;m over terrain contours (WAsP). Faster wind (red) follows the ridge.</figcaption>
-            </figure>
-            <figure>
-              <div class="plate"><img src="assets/greenard-rose.png" alt="Wind rose and Weibull histogram of the observed wind climate: mean 4.90 m/s, power density 135 W/m²" loading="lazy"></div>
-              <figcaption><b>Fig. 2.2</b> Observed wind climate at 10&nbsp;m: wind rose and Weibull distribution. U&nbsp;=&nbsp;4.90&nbsp;m/s, P&nbsp;=&nbsp;135&nbsp;W/m².</figcaption>
-            </figure>
-            <figure>
-              <div class="plate"><img src="assets/greenard-layout.png" alt="Python tool output: 3 by 2 grid of six turbines, T01 to T06, spaced 450 m apart, with wind arriving from 270 degrees at 9 m/s" loading="lazy"></div>
-              <figcaption><b>Fig. 2.3</b> Output from my tool: a 3×2 layout of six 1&nbsp;MW turbines, 5 rotor diameters apart, with wind from 270°.</figcaption>
-            </figure>
-            <div class="tags" aria-label="Skills used">
-              <span class="tag">Wind resource assessment</span><span class="tag">Weibull statistics</span><span class="tag">Wake modelling</span><span class="tag">AEP</span><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">WAsP</span>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- Project 03: ZEIKU -->
-      <article class="case" id="zeiku">
-        <div class="case-head">
-          <div>
-            <span class="eyebrow">Project 03 · Mechanical design &amp; prototyping</span>
-            <h3 class="title">ZEIKU: a contamination-free DNA swab dryer</h3>
-            <p class="lede">Ottawa Police labs dry forensic swabs by hand and judge dryness by eye. Our five-person team designed a sealed, portable box that dries two swabs side by side without cross-contamination, measures humidity in real time and lights up when each swab is dry.</p>
-          </div>
-          <div class="titleblock">
-            <div class="full"><span class="k">Client</span>Ottawa Police Service</div>
-            <div><span class="k">Course</span>GNG1503 · uOttawa</div>
-            <div><span class="k">Date</span>Fall 2025</div>
-            <div><span class="k">Team</span>5 students</div>
-            <div><span class="k">My role</span>Mechanical</div>
-          </div>
-        </div>
-
-        <div class="readings">
-          <div><div class="v">19×19×29<small>cm</small></div><div class="d">Sealed acrylic enclosure</div></div>
-          <div><div class="v">≥3<small>cm</small></div><div class="d">Minimum swab spacing, set by our cross-contamination test</div></div>
-          <div><div class="v">2.6<small>CFM</small></div><div class="d">Airflow needed. The 40&nbsp;mm fan supplies 3 to 5</div></div>
-          <div><div class="v">+2<small>% RH</small></div><div class="d">Dryness threshold relative to ambient humidity</div></div>
-        </div>
-
-        <div class="case-body">
-          <div class="stack">
-            <div class="prose">
-              <h3>Mechanical design</h3>
-              <ul class="points">
-                <li><strong>Enclosure:</strong> rigid, non-porous acrylic that is easy to disinfect, reinforced with 3D-printed PLA corner brackets.</li>
-                <li><strong>Sliding door on rails</strong>, so the box opens in one motion without disturbing the samples.</li>
-                <li><strong>Rail-mounted, removable shelves</strong> for the swab holder and the electronics. Everything comes out for cleaning without tools.</li>
-                <li><strong>Ventilation:</strong> 5×5&nbsp;cm cut-out, 3D-printed fan mount with M3 screws, outer grille and a foam-filter frame.</li>
-              </ul>
-            </div>
-
-            <div class="prose">
-              <h3>Design decisions</h3>
-              <div class="table-wrap">
-                <table>
-                  <thead><tr><th>Choice</th><th>Picked</th><th>Why</th></tr></thead>
-                  <tbody>
-                    <tr><td>Fan size</td><td class="mono">40 mm</td><td>Best flow-to-noise trade-off. 30 and 60&nbsp;mm were considered and rejected</td></tr>
-                    <tr><td>Filter</td><td class="mono">Fine foam</td><td>HEPA is too restrictive for a small 40&nbsp;mm fan</td></tr>
-                    <tr><td>Mount material</td><td class="mono">PLA</td><td>Easy to print and not thermally critical, so no need for PETG</td></tr>
-                    <tr><td>Humidity sensors</td><td class="mono">DHT11</td><td>Accurate enough in testing, so the pricier DHT22 wasn't needed</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <div class="prose">
-              <h3>Sizing the airflow</h3>
-              <div class="calc">
-                <span class="k">opening</span>   A = 5 cm × 5 cm = 0.0025 m²<br>
-                <span class="k">target</span>    v ≈ 0.5 m/s<br>
-                <span class="k">flow</span>      Q = A·v = 0.00125 m³/s ≈ 4.5 m³/h ≈ <span class="ok">2.6 CFM</span><br>
-                <span class="k">supply</span>    5 V 40 mm fan → 3–5 CFM <span class="ok">✓ adequate</span>
-              </div>
-            </div>
-
-            <div class="prose">
-              <h3>Testing</h3>
-              <ul class="points">
-                <li><strong>Cross-contamination:</strong> two swabs at 1, 3 and 5&nbsp;cm, one marked with a tracer, fan running for 30&nbsp;min. Contaminated at 1&nbsp;cm, clean at 3 and 5&nbsp;cm, which set the ≥3&nbsp;cm spacing rule.</li>
-                <li><strong>Fan mount:</strong> steady airflow with the filter in place and no excessive vibration. Approved for the integrated prototype.</li>
-                <li><strong>Dryness detection:</strong> a wet swab placed under each sensor turned its LED green once dry, on every trial.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="stack">
-            <figure>
-              <div class="plate photo" style="aspect-ratio: 3 / 4; max-height: 520px;"><img src="assets/zeiku-prototype.jpg" alt="Assembled ZEIKU prototype: clear acrylic box with electronics shelf on top and swab holders below" loading="lazy"></div>
-              <figcaption><b>Fig. 3.1</b> Final prototype: electronics shelf above, swab chamber below, all on internal rails.</figcaption>
-            </figure>
-            <div class="fig-pair">
-              <figure>
-                <div class="plate photo"><img src="assets/zeiku-fan.jpg" alt="Back of the box showing the 3D-printed green fan mount and filter frame" loading="lazy"></div>
-                <figcaption><b>Fig. 3.2</b> 3D-printed fan mount and filter frame.</figcaption>
-              </figure>
-              <figure>
-                <div class="plate photo"><img src="assets/zeiku-top.jpg" alt="Inside view of the enclosure with the removable shelves and PLA corner brackets" loading="lazy"></div>
-                <figcaption><b>Fig. 3.3</b> Removable shelves and PLA corner brackets.</figcaption>
-              </figure>
-            </div>
-            <figure>
-              <div class="plate"><img src="assets/zeiku-circuit.jpg" alt="Circuit diagram: Arduino Uno with three DHT11 sensors, a 16x2 LCD, two green LEDs, an HC-05 Bluetooth module and batteries" loading="lazy"></div>
-              <figcaption><b>Fig. 3.4</b> Team circuit: Arduino Uno, 3× DHT11, LCD, status LEDs and HC-05 Bluetooth that logs to Excel.</figcaption>
-            </figure>
-            <div class="tags" aria-label="Skills used">
-              <span class="tag">Mechanical design</span><span class="tag">3D printing</span><span class="tag">Laser cutting</span><span class="tag">Acrylic fabrication</span><span class="tag">Airflow sizing</span><span class="tag">Prototype testing</span><span class="tag">Client needs</span>
-            </div>
-            <a class="btn" href="https://makerepo.com/ZaydHB/2774.zeiku" target="_blank" rel="noopener" style="justify-self: start;">Project on MakerRepo ↗</a>
-          </div>
-        </div>
-      </article>
     </section>
 
-    <!-- About -->
-    <section class="block" id="about">
-      <div class="label">Sheet 03 · About</div>
-      <h2>About</h2>
-      <div class="about-grid">
-        <div class="prose">
-          <p>I'm a second-year mechanical engineering student at the University of Ottawa. I'm drawn to energy systems and to hands-on design, where the numbers on paper have to survive contact with a real prototype.</p>
-          <p>My first year included the ZEIKU project for a real client, and this term I'm modelling a clip-on visual shield in SolidWorks for a student with a sensory processing disorder. That summer I interned at Greenard in Casablanca, learning how wind farms are assessed before anything is built. I left with a working WAsP workflow and a Python model of my own.</p>
-          <p>I work comfortably in both French and English, and I'm looking for internships in mechanical design, energy or renewables.</p>
+    <!-- Live model -->
+    <section class="block" id="model">
+      <div class="label">Sheet 03 · Live model</div>
+      <h2>Try the wake model</h2>
+      <p class="section-intro">The Jensen wake model from my internship tool, running in your browser. Six 1&nbsp;MW turbines in the same 3×2 layout I studied. Turn the wind and watch how much energy the front row steals from the turbines behind it.</p>
+
+      <div class="wake" data-wake>
+        <div class="wake-grid">
+          <div class="wake-canvas">
+            <canvas role="img" aria-label="Wake map"></canvas>
+            <div class="wake-legend"><span>Speed deficit: none<span class="ramp" aria-hidden="true"></span>strong</span><span>Numbers under rotors = speed at hub (m/s)</span></div>
+          </div>
+          <div class="wake-ctrl">
+            <div class="ctrl">
+              <label for="w-dir">Wind from <output data-out="dir">270°</output></label>
+              <input id="w-dir" name="dir" type="range" min="0" max="359" step="1" value="270">
+            </div>
+            <div class="ctrl">
+              <label for="w-ws">Wind speed <output data-out="ws">9.0 m/s</output></label>
+              <input id="w-ws" name="ws" type="range" min="4" max="14" step="0.5" value="9">
+            </div>
+            <div class="ctrl">
+              <label for="w-sp">Spacing <output data-out="sp">5.0 D</output></label>
+              <input id="w-sp" name="sp" type="range" min="3" max="10" step="0.5" value="5">
+            </div>
+            <div class="ctrl">
+              <label for="w-k">Wake decay k <output data-out="k">0.075</output></label>
+              <input id="w-k" name="k" type="range" min="0.03" max="0.12" step="0.005" value="0.075">
+            </div>
+            <div class="wake-actions">
+              <button class="btn" type="button" data-preset="270">Aligned · 270°</button>
+              <button class="btn" type="button" data-preset="300">Skewed · 300°</button>
+              <button class="btn" type="button" data-act="spin" aria-pressed="false">Rotate the wind</button>
+            </div>
+            <div class="wake-out">
+              <div><span class="k">Farm output</span><span class="v" data-out="mw">–</span></div>
+              <div><span class="k">Wake loss</span><span class="v" data-out="loss">–</span></div>
+            </div>
+            <div class="bars" data-out="bars" aria-live="polite"></div>
+          </div>
         </div>
-        <div class="skills">
-          <div>
-            <h4>Design &amp; fabrication</h4>
-            <div class="tags"><span class="tag">SolidWorks (parts &amp; assemblies)</span><span class="tag">Mechanical design</span><span class="tag">3D printing (PLA, TPU)</span><span class="tag">Laser cutting</span><span class="tag">Prototyping</span></div>
-          </div>
-          <div>
-            <h4>Analysis</h4>
-            <div class="tags"><span class="tag">Wind resource assessment</span><span class="tag">Wake models</span><span class="tag">Weibull statistics</span><span class="tag">Airflow sizing</span><span class="tag">Test design</span></div>
-          </div>
-          <div>
-            <h4>Software</h4>
-            <div class="tags"><span class="tag">WAsP</span><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Arduino</span><span class="tag">Excel</span></div>
-          </div>
-          <div>
-            <h4>Languages</h4>
-            <div class="tags"><span class="tag">French</span><span class="tag">English</span></div>
+        <p class="wake-note">Assumptions: rotor 54&nbsp;m, thrust coefficient 0.8, generic 1&nbsp;MW power curve (cut-in 3&nbsp;m/s, rated 12&nbsp;m/s), wakes combined by root-sum-square. A single wind direction is the worst case. Over a real 12-sector wind rose, WAsP gave only 1.13% wake loss, which is the lesson from <a href="work/wind-farm.html">the case study</a>.</p>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="block" id="experience">
+      <div class="label">Sheet 04 · Experience</div>
+      <h2>Experience &amp; education</h2>
+      <p class="section-intro">Where I've learned, and what I did there.</p>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-when">Sep 2025 – Present</div>
+          <div class="tl-what">
+            <h3>BASc, Mechanical Engineering</h3>
+            <span class="org">University of Ottawa · Ottawa, ON</span>
+            <ul class="points">
+              <li><strong>GNG2501 (Fall 2026):</strong> modelling a clip-on visual shield in SolidWorks for a student client, with a six-test validation plan and a $50 budget.</li>
+              <li><strong>GNG1503 (Fall 2025):</strong> mechanical design of the ZEIKU swab dryer for the Ottawa Police Service. Built, tested and documented in a full user and product manual.</li>
+            </ul>
           </div>
         </div>
+        <div class="tl-item">
+          <div class="tl-when">Jun – Jul 2026</div>
+          <div class="tl-what">
+            <h3>Engineering Intern, Wind Resource</h3>
+            <span class="org">Greenard · Casablanca, Morocco</span>
+            <ul class="points">
+              <li>Ran the WAsP workflow end to end: observed wind climate, Wind Atlas, a 180-point resource grid and a detailed turbine-site energy estimate.</li>
+              <li>Built a modular Python tool (Jensen and Ainslie eddy-viscosity wakes, Weibull integration, loss cascade, Streamlit UI) and validated it against WAsP.</li>
+              <li>Wrote technical notes on turbine architecture, the Betz limit, power curves and wake effects, plus a full internship report in French.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="block" id="skills">
+      <div class="label">Sheet 05 · Skills</div>
+      <h2>Skills, with proof</h2>
+      <p class="section-intro">No skill bars. Each skill points to the project where I used it.</p>
+      <div class="table-wrap">
+        <table class="skills-table">
+          <thead><tr><th>Skill</th><th>What I did with it</th><th>Evidence</th></tr></thead>
+          <tbody>
+            <tr><td>SolidWorks</td><td>Part and assembly modelling, mates to a reference frame, checking fit before printing</td><td><a href="work/visual-shield.html">Visual shield →</a></td></tr>
+            <tr><td>Design for 3D printing</td><td>Thin PLA shells, flexible TPU clips and hinges, printed mounts and brackets</td><td><a href="work/visual-shield.html">Visual shield →</a> <a href="work/zeiku.html">ZEIKU →</a></td></tr>
+            <tr><td>Fabrication</td><td>Laser-cut acrylic, sanding and fitting, rail-mounted removable shelves</td><td><a href="work/zeiku.html">ZEIKU →</a></td></tr>
+            <tr><td>Engineering analysis</td><td>Airflow sizing, Weibull statistics, power curves, annual energy and capacity factor</td><td><a href="work/zeiku.html">ZEIKU →</a> <a href="work/wind-farm.html">Wind farm →</a></td></tr>
+            <tr><td>Python</td><td>Modular numerical model, ODE integration (RK45), Streamlit interface, validation against reference software</td><td><a href="work/wind-farm.html">Wind farm →</a></td></tr>
+            <tr><td>WAsP</td><td>Wind Atlas generalisation, resource grids, turbine-site AEP, terrain validity (RIX)</td><td><a href="work/wind-farm.html">Wind farm →</a></td></tr>
+            <tr><td>Testing</td><td>Test plans with measurable pass criteria, low-fidelity prototypes, client trials</td><td><a href="work/zeiku.html">ZEIKU →</a> <a href="work/visual-shield.html">Visual shield →</a></td></tr>
+            <tr><td>Communication</td><td>Technical reports, user manuals and client presentations in French and English</td><td><a href="work/wind-farm.html">Report →</a></td></tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
     <!-- Contact -->
     <section class="block" id="contact">
-      <div class="label">Sheet 04 · Contact</div>
-      <h2>Let's talk</h2>
-      <div class="contact-grid">
-        <p>Looking for an intern who'll model it, build it, and check the numbers? The best way to reach me is LinkedIn.</p>
-        <div class="cta">
-          <a class="btn primary" href="https://www.linkedin.com/in/zayd-houachmi-b5578735a/" target="_blank" rel="noopener">Message on LinkedIn ↗</a>
-          <a class="btn" href="https://github.com/ZaydHouachmi" target="_blank" rel="noopener">GitHub ↗</a>
+      <div class="label">Sheet 06 · Contact</div>
+      <div class="contact-card">
+        <div>
+          <h2>Let's build something</h2>
+          <p>I'm looking for internships in mechanical design, energy or renewables. If you need someone who will model it, build it and check the numbers, I'd like to hear from you.</p>
+        </div>
+        <div>
+          <a class="btn primary" href="https://www.linkedin.com/in/zayd-houachmi-b5578735a/" target="_blank" rel="noopener">Message me on LinkedIn <span>↗</span></a>
+          <a class="btn" href="https://github.com/ZaydHouachmi" target="_blank" rel="noopener">See my GitHub <span>↗</span></a>
         </div>
       </div>
     </section>
 
     <footer>
-      <span>© 2026 Zayd Houachmi</span>
-      <span>Ottawa, ON · Rev B</span>
+      <span>© 2026 Zayd Houachmi · Ottawa, ON</span>
+      <span>Sheet 01–06 · Rev C · <a href="#top">Back to top ↑</a></span>
     </footer>
   </main>
 </div>
-
-<script>
-  (function () {
-    var btn = document.getElementById('theme-toggle');
-    var root = document.documentElement;
-    var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
-    function isDark() {
-      var t = root.getAttribute('data-theme');
-      return t ? t === 'dark' : !!(mq && mq.matches);
-    }
-    function label() {
-      var dark = isDark();
-      btn.textContent = dark ? 'Vellum' : 'Blueprint';
-      btn.setAttribute('aria-pressed', String(dark));
-    }
-    var saved = null;
-    try { saved = localStorage.getItem('zh-theme'); } catch (e) {}
-    if (saved === 'dark' || saved === 'light') root.setAttribute('data-theme', saved);
-    label();
-    if (mq && mq.addEventListener) mq.addEventListener('change', label);
-    btn.addEventListener('click', function () {
-      var next = isDark() ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('zh-theme', next); } catch (e) {}
-      label();
-    });
-  })();
-</script>
+<script src="assets/site.js"></script>
 </body>
 </html>

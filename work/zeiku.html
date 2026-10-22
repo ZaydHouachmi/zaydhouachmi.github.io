@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ZEIKU Swab Dryer | Zayd Houachmi</title>
+<meta name="description" content="Mechanical design of ZEIKU, a sealed, sensor-controlled DNA swab dryer built for the Ottawa Police Service. GNG1503, University of Ottawa.">
+<link rel="canonical" href="https://zaydhouachmi.github.io/work/zeiku.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ZEIKU Swab Dryer | Zayd Houachmi">
+<meta property="og:description" content="A sealed, portable swab dryer for the Ottawa Police: acrylic enclosure, rail-mounted shelves and filtered ventilation.">
+<meta property="og:image" content="https://zaydhouachmi.github.io/assets/zeiku-top.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0A2342">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%230A2342'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23FF8148' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%23EAF2FB'/%3E%3C/svg%3E">
+<script>try{var t=localStorage.getItem('zh-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:wght@800&family=Big+Shoulders:wght@600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="sheet">
+  <header class="bar">
+    <div class="wrap">
+      <a class="wordmark" href="../">Zayd <span>Houachmi</span></a>
+      <nav class="nav" aria-label="Sections">
+        <a href="../#work" aria-current="page">Work</a>
+        <a href="../#model">Live model</a>
+        <a href="../#experience">Experience</a>
+        <a href="../#skills">Skills</a>
+        <a href="../#contact">Contact</a>
+        <button class="theme-toggle" type="button" aria-pressed="false">Blueprint</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" id="main">
+    <a class="crumb" href="../#work">← All projects</a>
+
+    <section class="case-hero">
+      <div class="label rise">Project 03 · Mechanical design &amp; prototyping</div>
+      <div class="case-top">
+        <div>
+          <h1 class="rise d1">ZEIKU: a contamination-free swab dryer</h1>
+          <p class="lede rise d2">Ottawa Police labs dry forensic DNA swabs by hand and judge dryness by eye. A badly dried swab can spoil the sample, skew results and risk cross-contamination. Our five-person team designed a sealed, portable box that dries two swabs side by side, measures humidity in real time and lights up when each swab is dry.</p>
+        </div>
+        <div class="titleblock rise d2">
+          <div class="full"><span class="k">Client</span><span class="big">Ottawa Police</span></div>
+          <div><span class="k">Course</span>GNG1503 · uOttawa</div>
+          <div><span class="k">Date</span>Fall 2025</div>
+          <div><span class="k">Team</span>5 students</div>
+          <div><span class="k">My role</span>Mechanical</div>
+          <div class="full"><span class="k">Fabrication</span>Laser-cut acrylic · 3D-printed PLA</div>
+        </div>
+      </div>
+
+      <div class="readings rise d3">
+        <div><div class="v">19×19×29<small>cm</small></div><div class="d">Sealed acrylic enclosure</div></div>
+        <div><div class="v">≥3<small>cm</small></div><div class="d">Minimum swab spacing, set by our cross-contamination test</div></div>
+        <div><div class="v">2.6<small>CFM</small></div><div class="d">Airflow needed. The 40&nbsp;mm fan supplies 3 to 5</div></div>
+        <div><div class="v">+2<small>% RH</small></div><div class="d">Dryness threshold relative to ambient humidity</div></div>
+      </div>
+    </section>
+
+    <div class="case-body">
+      <div class="stack">
+        <div class="prose">
+          <h3>What the client needed</h3>
+          <ul class="points">
+            <li>Drying without handling during the process, and no opening the box to check.</li>
+            <li>Clear, reliable confirmation that a swab is dry.</li>
+            <li>A compact, hygienic device that is easy to clean.</li>
+            <li>Automatic temperature and humidity logging to prove the process worked.</li>
+          </ul>
+        </div>
+
+        <div class="prose">
+          <h3>Mechanical design</h3>
+          <ul class="points">
+            <li><strong>Enclosure:</strong> rigid, non-porous acrylic that is easy to disinfect, reinforced with 3D-printed PLA brackets in the corners and along the edges.</li>
+            <li><strong>Sliding door on rails</strong>, so the box opens in one motion without disturbing the samples.</li>
+            <li><strong>Rail-mounted, removable shelves</strong> for the swab holder and the electronics. Everything comes out for cleaning without tools.</li>
+            <li><strong>Ventilation:</strong> 5×5&nbsp;cm cut-out, 3D-printed fan mount with M3 screws, outer grille and a foam-filter frame, so only filtered air reaches the chamber.</li>
+          </ul>
+        </div>
+
+        <div class="prose">
+          <h3>Design decisions</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Choice</th><th>Picked</th><th>Why</th></tr></thead>
+              <tbody>
+                <tr><td>Fan size</td><td class="mono">40 mm</td><td>Best flow-to-noise trade-off. 30 and 60&nbsp;mm were considered and rejected</td></tr>
+                <tr><td>Filter</td><td class="mono">Fine foam</td><td>HEPA is too restrictive for a small 40&nbsp;mm fan</td></tr>
+                <tr><td>Mount material</td><td class="mono">PLA</td><td>Easy to print and not thermally critical, so no need for PETG</td></tr>
+                <tr><td>Humidity sensors</td><td class="mono">DHT11</td><td>Accurate enough in testing, so the pricier DHT22 wasn't needed</td></tr>
+                <tr><td>Data link</td><td class="mono">Bluetooth</td><td>The electronics shelf sits inside the sealed box, where a USB cable is impractical</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="prose">
+          <h3>Sizing the airflow</h3>
+          <div class="calc">
+            <span class="k">opening</span>A = 5 cm × 5 cm = 0.0025 m²<br>
+            <span class="k">target</span>v ≈ 0.5 m/s<br>
+            <span class="k">flow</span>Q = A·v = 0.00125 m³/s ≈ 4.5 m³/h ≈ <span class="ok">2.6 CFM</span><br>
+            <span class="k">supply</span>5 V, 40 mm fan → 3–5 CFM <span class="ok">✓ adequate</span>
+          </div>
+        </div>
+
+        <div class="prose">
+          <h3>Testing</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Test</th><th>Method</th><th>Result</th></tr></thead>
+              <tbody>
+                <tr><td>Cross-contamination</td><td>Two swabs at 1, 3 and 5&nbsp;cm, one with a tracer, fan on for 30&nbsp;min</td><td>Contaminated at 1&nbsp;cm, clean at 3 and 5&nbsp;cm. <strong>Rule: ≥3&nbsp;cm</strong></td></tr>
+                <tr><td>Fan mount</td><td>5&nbsp;V fan on its printed mount, flow checked with light paper, noise and stability observed</td><td>Steady flow, no excessive vibration, filter doesn't choke the fan</td></tr>
+                <tr><td>Dryness detection</td><td>Wet swab placed under each sensor</td><td>Green LED on once dry, on every trial</td></tr>
+                <tr><td>Data logging</td><td>Sensors streamed over Bluetooth to Excel</td><td>All readings received and saved</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="note"><strong>What I'd do next.</strong> Hold more than two swabs, bring detection time under 30 minutes, and close the loop with PWM fan control driven by the humidity sensors.</div>
+      </div>
+
+      <div class="stack">
+        <figure>
+          <div class="plate photo" style="aspect-ratio: 4 / 3;"><img src="../assets/zeiku-top.jpg" width="480" height="351" alt="ZEIKU enclosure with the electronics shelf on top, PLA corner brackets and swab holders below"></div>
+          <figcaption><b>Fig. 3.1</b> Electronics shelf above, swab chamber below, all on internal rails with PLA corner brackets.</figcaption>
+        </figure>
+        <div class="fig-pair">
+          <figure>
+            <div class="plate photo"><img src="../assets/zeiku-fan.jpg" width="567" height="419" alt="Back of the box showing the 3D-printed fan mount and filter frame" loading="lazy"></div>
+            <figcaption><b>Fig. 3.2</b> 3D-printed fan mount and filter frame.</figcaption>
+          </figure>
+          <figure>
+            <div class="plate photo"><img src="../assets/zeiku-prototype.jpg" width="275" height="366" alt="Assembled ZEIKU prototype, front view" loading="lazy"></div>
+            <figcaption><b>Fig. 3.3</b> Assembled prototype.</figcaption>
+          </figure>
+        </div>
+        <figure>
+          <div class="plate"><img src="../assets/zeiku-circuit.jpg" width="549" height="332" alt="Circuit diagram: Arduino Uno with three DHT11 sensors, a 16x2 LCD, two green LEDs, an HC-05 Bluetooth module and batteries" loading="lazy"></div>
+          <figcaption><b>Fig. 3.4</b> Team circuit: Arduino Uno, 3× DHT11, LCD, status LEDs and HC-05 Bluetooth that logs to Excel.</figcaption>
+        </figure>
+        <div class="tags" aria-label="Skills used">
+          <span class="tag hot">Mechanical design</span><span class="tag">3D printing</span><span class="tag">Laser cutting</span><span class="tag">Acrylic fabrication</span><span class="tag">Airflow sizing</span><span class="tag">Prototype testing</span><span class="tag">Client needs</span>
+        </div>
+        <a class="btn" href="https://makerepo.com/ZaydHB/2774.zeiku" target="_blank" rel="noopener" style="justify-self: start;">Project on MakerRepo ↗</a>
+      </div>
+    </div>
+
+    <nav class="next" aria-label="More projects">
+      <a href="wind-farm.html"><span class="eyebrow">← Previous project</span><span class="t">Wind farm energy yield</span></a>
+      <a class="fwd" href="visual-shield.html"><span class="eyebrow">Next project →</span><span class="t">Clip-on visual shield</span></a>
+    </nav>
+
+    <footer style="margin-top: 56px;">
+      <span>© 2026 Zayd Houachmi · Ottawa, ON</span>
+      <span><a href="../">zaydhouachmi.github.io</a></span>
+    </footer>
+  </main>
+</div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wind Farm Energy Yield | Zayd Houachmi</title>
+<meta name="description" content="Internship at Greenard, Casablanca: WAsP wind resource assessment from a 10 m mast to turbine annual energy, plus a Python wake and energy-yield tool validated against WAsP.">
+<link rel="canonical" href="https://zaydhouachmi.github.io/work/wind-farm.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wind Farm Energy Yield | Zayd Houachmi">
+<meta property="og:description" content="WAsP resource study and a home-built Python wake model, validated against WAsP.">
+<meta property="og:image" content="https://zaydhouachmi.github.io/assets/greenard-grid.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0A2342">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%230A2342'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23FF8148' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%23EAF2FB'/%3E%3C/svg%3E">
+<script>try{var t=localStorage.getItem('zh-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:wght@800&family=Big+Shoulders:wght@600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="sheet">
+  <header class="bar">
+    <div class="wrap">
+      <a class="wordmark" href="../">Zayd <span>Houachmi</span></a>
+      <nav class="nav" aria-label="Sections">
+        <a href="../#work" aria-current="page">Work</a>
+        <a href="../#model">Live model</a>
+        <a href="../#experience">Experience</a>
+        <a href="../#skills">Skills</a>
+        <a href="../#contact">Contact</a>
+        <button class="theme-toggle" type="button" aria-pressed="false">Blueprint</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" id="main">
+    <a class="crumb" href="../#work">← All projects</a>
+
+    <section class="case-hero">
+      <div class="label rise">Project 02 · Wind resource engineering</div>
+      <div class="case-top">
+        <div>
+          <h1 class="rise d1">From a 10&nbsp;m mast to a wind farm's annual energy</h1>
+          <p class="lede rise d2">During a four-week internship at Greenard, a wind-energy studies firm in Casablanca, I learned the industry workflow for assessing a wind site in WAsP. Then I wrote my own Python tool that reproduces the core of it (wake models, Weibull integration and a loss cascade) and checked it against WAsP.</p>
+        </div>
+        <div class="titleblock rise d2">
+          <div class="full"><span class="k">Organisation</span><span class="big">Greenard</span></div>
+          <div><span class="k">Location</span>Casablanca, Morocco</div>
+          <div><span class="k">Dates</span>Jun 22 – Jul 17, 2026</div>
+          <div><span class="k">Type</span>Internship</div>
+          <div><span class="k">Report</span>French, 5 chapters</div>
+          <div class="full"><span class="k">Tools</span>WAsP 10 · Python · Streamlit</div>
+        </div>
+      </div>
+
+      <div class="readings rise d3">
+        <div><div class="v">4.90<small>m/s</small></div><div class="d">Mean wind measured at the station, 10&nbsp;m height</div></div>
+        <div><div class="v">7.85<small>m/s</small></div><div class="d">Predicted at turbine site 003, 50&nbsp;m hub height</div></div>
+        <div><div class="v">3.149<small>GWh/yr</small></div><div class="d">Net annual energy at site 003, 1.13% wake loss</div></div>
+        <div><div class="v">5.1→17.6<small>%</small></div><div class="d">Capacity factor of a 6&nbsp;MW farm, raw vs corrected wind climate</div></div>
+      </div>
+    </section>
+
+    <div class="case-body">
+      <div class="stack">
+        <div class="prose">
+          <h3>The problem</h3>
+          <p>Wind is measured at one mast, often low and in the wrong place, but turbines stand higher and on different terrain. Power in the wind scales with the cube of speed:</p>
+          <div class="calc"><span class="k">power</span>P = ½ · ρ · A · V³<br><span class="k">Betz limit</span>C<sub>p,max</sub> = 16/27 ≈ <span class="ok">0.593</span></div>
+          <p>So a 1&nbsp;m/s error in mean speed can make or break a project. The job is to carry a measurement correctly across height, terrain roughness and relief, then turn it into energy.</p>
+        </div>
+
+        <div class="prose">
+          <h3>What I did in WAsP</h3>
+          <ul class="points">
+            <li><strong>Observed wind climate:</strong> 12 direction sectors with a Weibull fit for each. West to north-west dominates (270° and 300° together cover over 32% of the time), with a 4.90&nbsp;m/s mean and 135&nbsp;W/m² at 10&nbsp;m.</li>
+            <li><strong>Wind Atlas:</strong> removed the local effects of the measurement site and generalised the climate across 5 roughness classes (0 to 1.5&nbsp;m) and 5 heights (10 to 200&nbsp;m).</li>
+            <li><strong>Resource grid:</strong> 12×15 nodes at 1&nbsp;km resolution and 50&nbsp;m height over the "Crest" terrain. Mean speed ranges from 6.52 to 8.19&nbsp;m/s, and the best corridor follows the ridge.</li>
+            <li><strong>Turbine site 003:</strong> up to +14.3% speed-up from terrain in the 270° sector. RIX = 0% on every sector, so the linear model is valid there.</li>
+          </ul>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Resource grid "Crest", 50 m</th><th style="text-align:right">Min</th><th style="text-align:right">Mean</th><th style="text-align:right">Max</th></tr></thead>
+            <tbody>
+              <tr><td>Mean wind speed [m/s]</td><td class="mono" style="text-align:right">6.52</td><td class="mono" style="text-align:right">7.31</td><td class="mono" style="text-align:right">8.19</td></tr>
+              <tr><td>Power density [W/m²]</td><td class="mono" style="text-align:right">286</td><td class="mono" style="text-align:right">406</td><td class="mono" style="text-align:right">571</td></tr>
+              <tr><td>AEP per 1 MW turbine [GWh/yr]</td><td class="mono" style="text-align:right">2.165</td><td class="mono" style="text-align:right">2.780</td><td class="mono" style="text-align:right">3.438</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="note"><strong>Method sensitivity.</strong> For the same isolated turbine, WAsP gives a gross AEP of 3.239&nbsp;GWh with the combined Weibull method and 3.185&nbsp;GWh with the emergent method, a 1.71% gap. Even a simple case depends on the calculation method you choose.</p>
+      </div>
+
+      <div class="stack">
+        <figure>
+          <div class="plate"><img src="../assets/greenard-grid.png" width="482" height="366" alt="WAsP resource grid map: mean wind speed at 50 m over the Crest terrain, overlaid on contour lines, ranging from 6.52 to 8.19 m/s"></div>
+          <figcaption><b>Fig. 2.1</b> Resource grid "Crest", mean speed at 50&nbsp;m over terrain contours (WAsP). Faster wind (red) follows the ridge.</figcaption>
+        </figure>
+        <figure>
+          <div class="plate"><img src="../assets/greenard-rose.png" width="680" height="330" alt="Wind rose and Weibull histogram of the observed wind climate: mean 4.90 m/s, power density 135 W/m²" loading="lazy"></div>
+          <figcaption><b>Fig. 2.2</b> Observed wind climate at 10&nbsp;m: wind rose and Weibull distribution. U&nbsp;=&nbsp;4.90&nbsp;m/s, P&nbsp;=&nbsp;135&nbsp;W/m².</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <section class="block" style="margin-top: 64px;">
+      <div class="label">The Python tool</div>
+      <h2>Rebuilding the engine myself</h2>
+      <p class="section-intro">To really understand what WAsP does inside, I wrote a modular energy-yield model with a Streamlit front end. It integrates turbine output over every sector and every 1&nbsp;m/s speed bin of the Weibull distribution, converts probabilities to hours per year, then applies six post-wake losses.</p>
+
+      <div class="case-body">
+        <div class="stack">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Module</th><th>Responsibility</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">turbine.py</td><td>Position, rotor diameter, hub height</td></tr>
+                <tr><td class="mono">wind_farm.py</td><td>Downwind and crosswind distances for every turbine pair, in a frame aligned with the wind</td></tr>
+                <tr><td class="mono">wake_model.py</td><td>Jensen (linear wake expansion R<sub>w</sub>&nbsp;=&nbsp;R&nbsp;+&nbsp;kx) and Ainslie eddy-viscosity, solved with an RK45 integrator</td></tr>
+                <tr><td class="mono">power_curve.py</td><td>Cut-in, ramp-up, rated plateau and cut-out</td></tr>
+                <tr><td class="mono">topography.py</td><td>Flat, synthetic hill or imported terrain for turbine elevations</td></tr>
+                <tr><td class="mono">wind_resource.py</td><td>Wind rose with a Weibull distribution per sector, like the WAsP tables</td></tr>
+                <tr><td class="mono">energy_yield.py</td><td>Per-turbine AEP, loss cascade and farm capacity factor</td></tr>
+                <tr><td class="mono">app.py</td><td>Streamlit interface for terrain, wind rose, layout and loss inputs</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="prose">
+            <h3>Loss cascade</h3>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Loss, applied in order</th><th style="text-align:right">Value</th></tr></thead>
+                <tbody>
+                  <tr><td>Shadow flicker</td><td class="mono" style="text-align:right">1.60 %</td></tr>
+                  <tr><td>Flow / turbine interaction</td><td class="mono" style="text-align:right">1.08 %</td></tr>
+                  <tr><td>Availability</td><td class="mono" style="text-align:right">3.00 %</td></tr>
+                  <tr><td>Electrical</td><td class="mono" style="text-align:right">2.00 %</td></tr>
+                  <tr><td>Turbine performance</td><td class="mono" style="text-align:right">3.60 %</td></tr>
+                  <tr><td>Environment (icing, soiling)</td><td class="mono" style="text-align:right">1.00 %</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="calc">Cf = E<sub>net</sub> [kWh/yr] / (Σ P<sub>rated</sub> [kW] × 8760 h)</div>
+          </div>
+        </div>
+
+        <div class="stack">
+          <figure>
+            <div class="plate"><img src="../assets/greenard-layout.png" width="1050" height="1050" alt="Python tool output: 3 by 2 grid of six turbines, T01 to T06, with wind arriving from 270 degrees at 9 m/s" loading="lazy"></div>
+            <figcaption><b>Fig. 2.3</b> Output from my tool: a 3×2 layout of six 1&nbsp;MW turbines with wind from 270°.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="label">Validation</div>
+      <h2>Does it agree with WAsP?</h2>
+      <p class="section-intro">Fed the station's 12-sector Weibull table, the tool recomputes a mean of <strong>4.90&nbsp;m/s</strong>, which matches WAsP exactly. Then I compared two scenarios for six 1&nbsp;MW turbines (54&nbsp;m rotor, 50&nbsp;m hub, 5 diameters apart, Jensen wakes).</p>
+      <div class="table-wrap">
+        <table style="min-width: 600px;">
+          <thead><tr><th>Scenario</th><th style="text-align:right">Mean speed</th><th style="text-align:right">Gross energy</th><th style="text-align:right">Net energy</th><th style="text-align:right">Cf</th></tr></thead>
+          <tbody>
+            <tr><td>Raw station climate (10 m)</td><td class="mono" style="text-align:right">4.90 m/s</td><td class="mono" style="text-align:right">3,679 MWh/yr</td><td class="mono" style="text-align:right">2,663 MWh/yr</td><td class="mono" style="text-align:right">5.1 %</td></tr>
+            <tr><td>Corrected at turbine site (50 m)</td><td class="mono" style="text-align:right">7.88 m/s</td><td class="mono" style="text-align:right">16,186 MWh/yr</td><td class="mono" style="text-align:right">9,264 MWh/yr</td><td class="mono" style="text-align:right">17.6 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="prose" style="margin-top: 28px;">
+        <p>Same rotors and same rated power, but the capacity factor more than triples. Height extrapolation and terrain correction aren't a detail. They decide whether a project is worth building.</p>
+        <p class="note"><strong>What I learned from the limit.</strong> In the second scenario I put all the wind in one direction (270°) to keep things simple. That exaggerates the wake losses: 62% on the third turbine in a row, against 1.13% when WAsP uses all 12 real sectors. A realistic wind rose spreads the wakes out, which is why it matters. You can see the effect yourself below.</p>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="label">Live model</div>
+      <h2>Try it: Jensen wakes</h2>
+      <p class="section-intro">The same Jensen model, running in your browser. Start at 270° (aligned rows) and then skew the wind to 300°.</p>
+      <div class="wake" data-wake>
+        <div class="wake-grid">
+          <div class="wake-canvas">
+            <canvas role="img" aria-label="Wake map"></canvas>
+            <div class="wake-legend"><span>Speed deficit: none<span class="ramp" aria-hidden="true"></span>strong</span><span>Numbers under rotors = speed at hub (m/s)</span></div>
+          </div>
+          <div class="wake-ctrl">
+            <div class="ctrl">
+              <label for="w-dir">Wind from <output data-out="dir">270°</output></label>
+              <input id="w-dir" name="dir" type="range" min="0" max="359" step="1" value="270">
+            </div>
+            <div class="ctrl">
+              <label for="w-ws">Wind speed <output data-out="ws">9.0 m/s</output></label>
+              <input id="w-ws" name="ws" type="range" min="4" max="14" step="0.5" value="9">
+            </div>
+            <div class="ctrl">
+              <label for="w-sp">Spacing <output data-out="sp">5.0 D</output></label>
+              <input id="w-sp" name="sp" type="range" min="3" max="10" step="0.5" value="5">
+            </div>
+            <div class="ctrl">
+              <label for="w-k">Wake decay k <output data-out="k">0.075</output></label>
+              <input id="w-k" name="k" type="range" min="0.03" max="0.12" step="0.005" value="0.075">
+            </div>
+            <div class="wake-actions">
+              <button class="btn" type="button" data-preset="270">Aligned · 270°</button>
+              <button class="btn" type="button" data-preset="300">Skewed · 300°</button>
+              <button class="btn" type="button" data-act="spin" aria-pressed="false">Rotate the wind</button>
+            </div>
+            <div class="wake-out">
+              <div><span class="k">Farm output</span><span class="v" data-out="mw">–</span></div>
+              <div><span class="k">Wake loss</span><span class="v" data-out="loss">–</span></div>
+            </div>
+            <div class="bars" data-out="bars" aria-live="polite"></div>
+          </div>
+        </div>
+        <p class="wake-note">Assumptions: rotor 54&nbsp;m, thrust coefficient 0.8, generic 1&nbsp;MW power curve (cut-in 3&nbsp;m/s, rated 12&nbsp;m/s), wakes combined by root-sum-square, one wind direction at a time.</p>
+      </div>
+      <div class="tags" style="margin-top: 28px;" aria-label="Skills used">
+        <span class="tag hot">Python</span><span class="tag">WAsP</span><span class="tag">Wind resource assessment</span><span class="tag">Weibull statistics</span><span class="tag">Wake modelling</span><span class="tag">AEP</span><span class="tag">Streamlit</span>
+      </div>
+    </section>
+
+    <nav class="next" aria-label="More projects">
+      <a href="visual-shield.html"><span class="eyebrow">← Previous project</span><span class="t">Clip-on visual shield</span></a>
+      <a class="fwd" href="zeiku.html"><span class="eyebrow">Next project →</span><span class="t">ZEIKU swab dryer</span></a>
+    </nav>
+
+    <footer style="margin-top: 56px;">
+      <span>© 2026 Zayd Houachmi · Ottawa, ON</span>
+      <span><a href="../">zaydhouachmi.github.io</a></span>
+    </footer>
+  </main>
+</div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

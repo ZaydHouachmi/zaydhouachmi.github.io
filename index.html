@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Zayd Houachmi | Mechanical Engineering</title>
-<meta name="description" content="Portfolio of Zayd Houachmi, mechanical engineering student at the University of Ottawa: wind resource assessment and wake modelling, and a sensor-controlled swab dryer for the Ottawa Police.">
+<meta name="description" content="Portfolio of Zayd Houachmi, mechanical engineering student at the University of Ottawa: SolidWorks product design, wind resource assessment and wake modelling, and a sensor-controlled swab dryer for the Ottawa Police.">
 <meta property="og:title" content="Zayd Houachmi | Mechanical Engineering">
-<meta property="og:description" content="Wind farm energy-yield modelling with WAsP and Python, and mechanical design of a forensic swab dryer.">
-<meta property="og:image" content="https://zaydhouachmi.github.io/assets/greenard-grid.png">
+<meta property="og:description" content="SolidWorks product design, wind farm energy-yield modelling with WAsP and Python, and mechanical design of a forensic swab dryer.">
+<meta property="og:image" content="https://zaydhouachmi.github.io/assets/shield-render.jpg">
 <meta property="og:url" content="https://zaydhouachmi.github.io/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%230A2342'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23FF8148' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%23EAF2FB'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -497,7 +497,7 @@
           <div><span class="k">Year</span>2nd year</div>
           <div><span class="k">Institution</span>uOttawa</div>
           <div><span class="k">Languages</span>FR · EN</div>
-          <div><span class="k">Focus</span>Energy · Design</div>
+          <div><span class="k">CAD</span>SolidWorks</div>
           <div><span class="k">Status</span>Open to internships</div>
           <div class="full"><span class="k">Sheet</span>01 of 04 · Rev B · Scale 1:1</div>
         </div>
@@ -510,6 +510,14 @@
       <h2>Selected projects</h2>
 
       <div class="index">
+        <a href="#shield">
+          <div class="thumb"><img src="assets/shield-cad-render.jpg" alt="" loading="lazy"></div>
+          <div>
+            <span class="eyebrow">Design project · 2026</span>
+            <h3>Clip-on visual shield</h3>
+            <p>SolidWorks assembly of a foldable shield that blocks peripheral vision.</p>
+          </div>
+        </a>
         <a href="#greenard">
           <div class="thumb"><img src="assets/greenard-grid.png" alt="" loading="lazy"></div>
           <div>
@@ -528,11 +536,113 @@
         </a>
       </div>
 
-      <!-- Project 01: Greenard -->
+      <!-- Project 01: Visual shield -->
+      <article class="case" id="shield">
+        <div class="case-head">
+          <div>
+            <span class="eyebrow">Project 01 · CAD &amp; product design</span>
+            <h3 class="title">A clip-on visual shield for prescription glasses</h3>
+            <p class="lede">A student with a sensory processing disorder is distracted in class by movement, screens and lights at the edge of their vision. Their current fix (modified lab goggles, a mask and a hood) is uncomfortable and doesn't work well. We're designing a light, foldable shield that clips onto their own glasses, blocks the top, sides and bottom, and keeps the view to the front clear.</p>
+          </div>
+          <div class="titleblock">
+            <div class="full"><span class="k">CAD</span><span class="big">SolidWorks</span></div>
+            <div><span class="k">Course</span>GNG2501 · uOttawa</div>
+            <div><span class="k">Date</span>Fall 2026</div>
+            <div><span class="k">Team</span>5 students</div>
+            <div><span class="k">Status</span>Prototype in progress</div>
+          </div>
+        </div>
+
+        <div class="readings">
+          <div><div class="v">≤80<small>°</small></div><div class="d">Horizontal field-of-view target (≤120° acceptable)</div></div>
+          <div><div class="v">≤20<small>g</small></div><div class="d">Mass target for the whole device (≤40&nbsp;g acceptable)</div></div>
+          <div><div class="v">1.5<small>mm</small></div><div class="d">Matte black PLA monocoque wall, 50&nbsp;mm flaps</div></div>
+          <div><div class="v">$39.95</div><div class="d">Current bill of materials, against a $50 budget</div></div>
+        </div>
+
+        <div class="case-body">
+          <div class="stack">
+            <div class="prose">
+              <h3>The SolidWorks model</h3>
+              <p>The full assembly is modelled in SolidWorks around a <strong>reference frame</strong>, so the fit on the glasses can be checked before anything is printed. Each part is its own component, mated to the frame, which keeps the panels interchangeable.</p>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Component</th><th>Function</th><th>Material</th></tr></thead>
+                <tbody>
+                  <tr><td>Front chassis</td><td>Monocoque shell with a 50&nbsp;mm top flap that blocks overhead lights</td><td class="mono">PLA 1.5 mm</td></tr>
+                  <tr><td>Side panels L/R</td><td>Block peripheral vision and stop short of the headphone cushions</td><td class="mono">PLA</td></tr>
+                  <tr><td>Lower flaps ×2</td><td>Removable one at a time, to block the bottom or let them read notes</td><td class="mono">PLA</td></tr>
+                  <tr><td>Clips</td><td>Hold the panels on the frame without modifying the glasses</td><td class="mono">TPU</td></tr>
+                  <tr><td>Light filters</td><td>Three tints (grey, dark, orange) for bright light and screens</td><td class="mono">PVC 0.3 mm</td></tr>
+                  <tr><td>Frame</td><td>Reference geometry the assembly is mated to</td><td class="mono">Reference</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="prose">
+              <h3>From client needs to specs</h3>
+              <ul class="points">
+                <li><strong>See the teacher and read:</strong> open centre, horizontal field of view ≤80°.</li>
+                <li><strong>Block top, sides and bottom:</strong> panels on three sides, vertical field of view ≤110°.</li>
+                <li><strong>No skin contact</strong> and <strong>keep the noise-cancelling headphones:</strong> clearance around the face, nothing in the cushion zone.</li>
+                <li><strong>Light and portable:</strong> thin walls, and panels that fold toward the temples on flexible TPU zones.</li>
+                <li><strong>No fogging:</strong> venting around the lenses for ≥120&nbsp;min of wear (≥60&nbsp;min acceptable).</li>
+              </ul>
+            </div>
+
+            <div class="prose">
+              <h3>Test plan</h3>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Test</th><th>Method</th><th>Pass</th></tr></thead>
+                  <tbody>
+                    <tr><td>Attachment</td><td>20 head movements, 20 on/off cycles</td><td>No detachment, frame intact</td></tr>
+                    <tr><td>Field of view</td><td>Protractor, object moved along an arc</td><td>≤80° · ≤120°</td></tr>
+                    <tr><td>Folding</td><td>50 fold/unfold cycles</td><td>No cracks or play</td></tr>
+                    <tr><td>Headphones</td><td>Worn with the client's own headset</td><td>Compatible, no discomfort</td></tr>
+                    <tr><td>Mass</td><td>Scale, complete device</td><td>≤20&nbsp;g · ≤40&nbsp;g</td></tr>
+                    <tr><td>Fog &amp; comfort</td><td>Continuous wear, then a survey</td><td>≥60&nbsp;min, comfort ≥8/10</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="note"><strong>Next.</strong> Model the clips in SolidWorks and add an exploded view (Oct 21–23), print and assemble (Oct 24–28), test with the client on Oct 30, then adjust by Nov 1. During testing the client installs and handles the device themselves.</div>
+          </div>
+
+          <div class="stack">
+            <figure>
+              <div class="plate photo"><img src="assets/shield-solidworks.jpg" alt="SolidWorks assembly window showing the shield: front chassis, side panels and lower flaps mated to a reference glasses frame, with the feature tree on the left" loading="lazy"></div>
+              <figcaption><b>Fig. 1.1</b> SolidWorks assembly: chassis, side panels and lower flaps mated to the reference frame.</figcaption>
+            </figure>
+            <div class="fig-pair">
+              <figure>
+                <div class="plate photo"><img src="assets/shield-render.jpg" alt="Render of the shield on glasses with one lower flap removed" loading="lazy"></div>
+                <figcaption><b>Fig. 1.2</b> Concept render, with one lower flap removed.</figcaption>
+              </figure>
+              <figure>
+                <div class="plate photo"><img src="assets/shield-modules.jpg" alt="Render of the shield with three interchangeable tinted light filters: orange, grey and dark" loading="lazy"></div>
+                <figcaption><b>Fig. 1.3</b> Interchangeable light filters in three tints.</figcaption>
+              </figure>
+            </div>
+            <figure>
+              <div class="plate photo" style="aspect-ratio: 1; max-height: 460px;"><img src="assets/shield-cad-render.jpg" alt="Shaded SolidWorks view of the shield assembly" loading="lazy"></div>
+              <figcaption><b>Fig. 1.4</b> Shaded view of the assembly.</figcaption>
+            </figure>
+            <div class="tags" aria-label="Skills used">
+              <span class="tag">SolidWorks</span><span class="tag">Assembly &amp; mates</span><span class="tag">Design for 3D printing</span><span class="tag">PLA / TPU</span><span class="tag">Specs from client needs</span><span class="tag">Test planning</span><span class="tag">Bill of materials</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 02: Greenard -->
       <article class="case" id="greenard">
         <div class="case-head">
           <div>
-            <span class="eyebrow">Project 01 · Wind resource engineering</span>
+            <span class="eyebrow">Project 02 · Wind resource engineering</span>
             <h3 class="title">From a 10&nbsp;m mast to a wind farm's annual energy</h3>
             <p class="lede">During a four-week internship at Greenard, a wind-energy studies firm in Casablanca, I learned the industry workflow for assessing a wind site in WAsP. Then I wrote my own Python tool that reproduces the core of it: wake models, Weibull integration and a loss cascade.</p>
           </div>
@@ -593,15 +703,15 @@
           <div class="stack">
             <figure>
               <div class="plate"><img src="assets/greenard-grid.png" alt="WAsP resource grid map: mean wind speed at 50 m over the Crest terrain, overlaid on contour lines, ranging from 6.52 to 8.19 m/s" loading="lazy"></div>
-              <figcaption><b>Fig. 1.1</b> Resource grid "Crest", mean speed at 50&nbsp;m over terrain contours (WAsP). Faster wind (red) follows the ridge.</figcaption>
+              <figcaption><b>Fig. 2.1</b> Resource grid "Crest", mean speed at 50&nbsp;m over terrain contours (WAsP). Faster wind (red) follows the ridge.</figcaption>
             </figure>
             <figure>
               <div class="plate"><img src="assets/greenard-rose.png" alt="Wind rose and Weibull histogram of the observed wind climate: mean 4.90 m/s, power density 135 W/m²" loading="lazy"></div>
-              <figcaption><b>Fig. 1.2</b> Observed wind climate at 10&nbsp;m: wind rose and Weibull distribution. U&nbsp;=&nbsp;4.90&nbsp;m/s, P&nbsp;=&nbsp;135&nbsp;W/m².</figcaption>
+              <figcaption><b>Fig. 2.2</b> Observed wind climate at 10&nbsp;m: wind rose and Weibull distribution. U&nbsp;=&nbsp;4.90&nbsp;m/s, P&nbsp;=&nbsp;135&nbsp;W/m².</figcaption>
             </figure>
             <figure>
               <div class="plate"><img src="assets/greenard-layout.png" alt="Python tool output: 3 by 2 grid of six turbines, T01 to T06, spaced 450 m apart, with wind arriving from 270 degrees at 9 m/s" loading="lazy"></div>
-              <figcaption><b>Fig. 1.3</b> Output from my tool: a 3×2 layout of six 1&nbsp;MW turbines, 5 rotor diameters apart, with wind from 270°.</figcaption>
+              <figcaption><b>Fig. 2.3</b> Output from my tool: a 3×2 layout of six 1&nbsp;MW turbines, 5 rotor diameters apart, with wind from 270°.</figcaption>
             </figure>
             <div class="tags" aria-label="Skills used">
               <span class="tag">Wind resource assessment</span><span class="tag">Weibull statistics</span><span class="tag">Wake modelling</span><span class="tag">AEP</span><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">WAsP</span>
@@ -610,11 +720,11 @@
         </div>
       </article>
 
-      <!-- Project 02: ZEIKU -->
+      <!-- Project 03: ZEIKU -->
       <article class="case" id="zeiku">
         <div class="case-head">
           <div>
-            <span class="eyebrow">Project 02 · Mechanical design &amp; prototyping</span>
+            <span class="eyebrow">Project 03 · Mechanical design &amp; prototyping</span>
             <h3 class="title">ZEIKU: a contamination-free DNA swab dryer</h3>
             <p class="lede">Ottawa Police labs dry forensic swabs by hand and judge dryness by eye. Our five-person team designed a sealed, portable box that dries two swabs side by side without cross-contamination, measures humidity in real time and lights up when each swab is dry.</p>
           </div>
@@ -684,21 +794,21 @@
           <div class="stack">
             <figure>
               <div class="plate photo" style="aspect-ratio: 3 / 4; max-height: 520px;"><img src="assets/zeiku-prototype.jpg" alt="Assembled ZEIKU prototype: clear acrylic box with electronics shelf on top and swab holders below" loading="lazy"></div>
-              <figcaption><b>Fig. 2.1</b> Final prototype: electronics shelf above, swab chamber below, all on internal rails.</figcaption>
+              <figcaption><b>Fig. 3.1</b> Final prototype: electronics shelf above, swab chamber below, all on internal rails.</figcaption>
             </figure>
             <div class="fig-pair">
               <figure>
                 <div class="plate photo"><img src="assets/zeiku-fan.jpg" alt="Back of the box showing the 3D-printed green fan mount and filter frame" loading="lazy"></div>
-                <figcaption><b>Fig. 2.2</b> 3D-printed fan mount and filter frame.</figcaption>
+                <figcaption><b>Fig. 3.2</b> 3D-printed fan mount and filter frame.</figcaption>
               </figure>
               <figure>
                 <div class="plate photo"><img src="assets/zeiku-top.jpg" alt="Inside view of the enclosure with the removable shelves and PLA corner brackets" loading="lazy"></div>
-                <figcaption><b>Fig. 2.3</b> Removable shelves and PLA corner brackets.</figcaption>
+                <figcaption><b>Fig. 3.3</b> Removable shelves and PLA corner brackets.</figcaption>
               </figure>
             </div>
             <figure>
               <div class="plate"><img src="assets/zeiku-circuit.jpg" alt="Circuit diagram: Arduino Uno with three DHT11 sensors, a 16x2 LCD, two green LEDs, an HC-05 Bluetooth module and batteries" loading="lazy"></div>
-              <figcaption><b>Fig. 2.4</b> Team circuit: Arduino Uno, 3× DHT11, LCD, status LEDs and HC-05 Bluetooth that logs to Excel.</figcaption>
+              <figcaption><b>Fig. 3.4</b> Team circuit: Arduino Uno, 3× DHT11, LCD, status LEDs and HC-05 Bluetooth that logs to Excel.</figcaption>
             </figure>
             <div class="tags" aria-label="Skills used">
               <span class="tag">Mechanical design</span><span class="tag">3D printing</span><span class="tag">Laser cutting</span><span class="tag">Acrylic fabrication</span><span class="tag">Airflow sizing</span><span class="tag">Prototype testing</span><span class="tag">Client needs</span>
@@ -716,13 +826,13 @@
       <div class="about-grid">
         <div class="prose">
           <p>I'm a second-year mechanical engineering student at the University of Ottawa. I'm drawn to energy systems and to hands-on design, where the numbers on paper have to survive contact with a real prototype.</p>
-          <p>My first year included the ZEIKU project for a real client. That summer I interned at Greenard in Casablanca, learning how wind farms are assessed before anything is built. I left with a working WAsP workflow and a Python model of my own.</p>
+          <p>My first year included the ZEIKU project for a real client, and this term I'm modelling a clip-on visual shield in SolidWorks for a student with a sensory processing disorder. That summer I interned at Greenard in Casablanca, learning how wind farms are assessed before anything is built. I left with a working WAsP workflow and a Python model of my own.</p>
           <p>I work comfortably in both French and English, and I'm looking for internships in mechanical design, energy or renewables.</p>
         </div>
         <div class="skills">
           <div>
             <h4>Design &amp; fabrication</h4>
-            <div class="tags"><span class="tag">Mechanical design</span><span class="tag">CAD</span><span class="tag">3D printing (PLA)</span><span class="tag">Laser cutting</span><span class="tag">Prototyping</span></div>
+            <div class="tags"><span class="tag">SolidWorks (parts &amp; assemblies)</span><span class="tag">Mechanical design</span><span class="tag">3D printing (PLA, TPU)</span><span class="tag">Laser cutting</span><span class="tag">Prototyping</span></div>
           </div>
           <div>
             <h4>Analysis</h4>

@@ -1,365 +1,761 @@
-<title>Zayed Houachmi</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zayd Houachmi | Mechanical Engineering</title>
+<meta name="description" content="Portfolio of Zayd Houachmi, mechanical engineering student at the University of Ottawa: wind resource assessment and wake modelling, and a sensor-controlled swab dryer for the Ottawa Police.">
+<meta property="og:title" content="Zayd Houachmi | Mechanical Engineering">
+<meta property="og:description" content="Wind farm energy-yield modelling with WAsP and Python, and mechanical design of a forensic swab dryer.">
+<meta property="og:image" content="https://zaydhouachmi.github.io/assets/greenard-grid.png">
+<meta property="og:url" content="https://zaydhouachmi.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%230A2342'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23FF8148' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%23EAF2FB'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:wght@700;800&family=Big+Shoulders:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:wght@800&family=Big+Shoulders:wght@600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   /*
-    Layout: a single technical drawing sheet — a fixed-margin frame, a
-    corner title block (name/discipline/rev/date like a real drawing),
-    and the page sections laid out as numbered "views" on a faint
-    drafting grid. Light = vellum sketch paper (graphite on paper);
-    dark = true blueprint (white/cyan lines on navy).
+    Layout: the site is one technical drawing set. Each section is a
+    "sheet" with a numbered label; each project opens with a title block
+    (client, date, role, tools), a strip of key readings, then the
+    write-up beside its figures. Light = graphite on vellum; dark = blueprint.
   */
   :root {
-    --bg: #EDEEE9;
-    --surface: #FFFFFF;
-    --fg: #1C2630;
-    --muted: #5B6673;
-    --grid: rgba(28,38,48,.08);
-    --line: #1C2630;
-    --accent: #D5491C;
+    --bg: #ECEEEA;
+    --surface: #F8F9F6;
+    --plate: #FFFFFF;
+    --fg: #18222D;
+    --muted: #56616E;
+    --grid: rgba(24,34,45,.075);
+    --rule: rgba(24,34,45,.18);
+    --line: #18222D;
+    --accent: #C9461B;
+    --accent-soft: rgba(201,70,27,.1);
     --accent-contrast: #FFFFFF;
-    --font-display: 'Big Shoulders Stencil', 'Big Shoulders', sans-serif;
-    --font-head: 'Big Shoulders', sans-serif;
-    --font-body: 'Source Sans 3', system-ui, sans-serif;
-    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --font-display: 'Big Shoulders Stencil', 'Big Shoulders', 'Arial Narrow', sans-serif;
+    --font-head: 'Big Shoulders', 'Arial Narrow', sans-serif;
+    --font-body: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+    color-scheme: light;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       --bg: #0A2342;
-      --surface: rgba(255,255,255,.06);
+      --surface: #0F2B4F;
+      --plate: #E8EDF2;
       --fg: #EAF2FB;
-      --muted: #93ACC9;
-      --grid: rgba(255,255,255,.1);
+      --muted: #97AFCB;
+      --grid: rgba(207,228,247,.085);
+      --rule: rgba(207,228,247,.22);
       --line: #CFE4F7;
       --accent: #FF8148;
+      --accent-soft: rgba(255,129,72,.13);
       --accent-contrast: #0A2342;
       color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
     --bg: #0A2342;
-    --surface: rgba(255,255,255,.06);
+    --surface: #0F2B4F;
+    --plate: #E8EDF2;
     --fg: #EAF2FB;
-    --muted: #93ACC9;
-    --grid: rgba(255,255,255,.1);
+    --muted: #97AFCB;
+    --grid: rgba(207,228,247,.085);
+    --rule: rgba(207,228,247,.22);
     --line: #CFE4F7;
     --accent: #FF8148;
+    --accent-soft: rgba(255,129,72,.13);
     --accent-contrast: #0A2342;
     color-scheme: dark;
   }
 
-  * { box-sizing: border-box; }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   body {
+    margin: 0;
     background: var(--bg);
     color: var(--fg);
     font-family: var(--font-body);
-    margin: 0;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
   }
+  img { max-width: 100%; display: block; }
   a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
   .sheet {
-    position: relative;
-    padding: 16px clamp(16px, 5vw, 56px) 48px;
+    min-height: 100vh;
+    padding: 0 clamp(16px, 5vw, 56px) 56px;
     background-image:
       linear-gradient(var(--grid) 1px, transparent 1px),
       linear-gradient(90deg, var(--grid) 1px, transparent 1px);
     background-size: 28px 28px;
   }
-  .sheet::before {
-    content: "";
-    position: fixed;
-    inset: 10px;
-    border: 1.5px solid var(--grid);
-    pointer-events: none;
-    z-index: 0;
-  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
 
+  /* Header */
   header.bar {
     position: sticky;
     top: env(safe-area-inset-top, 0px);
-    z-index: 5;
+    z-index: 10;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+  }
+  header.bar .wrap {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
-    padding: 14px 0;
-    background: var(--bg);
-    border-bottom: 1px solid var(--grid);
+    gap: 12px 20px;
     flex-wrap: wrap;
+    padding-block: 14px;
   }
   .wordmark {
     font-family: var(--font-head);
-    font-weight: 700;
-    font-size: 1.05rem;
-    letter-spacing: .04em;
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: .05em;
     text-transform: uppercase;
+    text-decoration: none;
   }
-  nav.links { display: flex; gap: 22px; align-items: center; }
-  nav.links a {
+  .wordmark span { color: var(--accent); }
+  .nav { display: flex; align-items: center; gap: 6px 22px; flex-wrap: wrap; }
+  .nav a {
     font-family: var(--font-mono);
-    font-size: .78rem;
-    letter-spacing: .06em;
+    font-size: .76rem;
+    letter-spacing: .08em;
     text-transform: uppercase;
     text-decoration: none;
     color: var(--muted);
+    padding-block: 4px;
     border-bottom: 1px solid transparent;
-    padding-bottom: 2px;
   }
-  nav.links a:hover, nav.links a:focus-visible { color: var(--fg); border-color: var(--accent); }
-
+  .nav a:hover { color: var(--fg); border-color: var(--accent); }
   #theme-toggle {
+    font: inherit;
     font-family: var(--font-mono);
-    font-size: .72rem;
-    letter-spacing: .05em;
+    font-size: .7rem;
+    letter-spacing: .06em;
     text-transform: uppercase;
-    background: transparent;
     color: var(--muted);
-    border: 1px solid var(--grid);
+    background: transparent;
+    border: 1px solid var(--rule);
     border-radius: 3px;
     padding: 6px 10px;
     cursor: pointer;
   }
-  #theme-toggle:hover, #theme-toggle:focus-visible { color: var(--fg); border-color: var(--accent); }
+  #theme-toggle:hover { color: var(--fg); border-color: var(--accent); }
 
-  main { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; }
-
+  /* Shared labels */
   .label {
-    font-family: var(--font-mono);
-    font-size: .72rem;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--accent);
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
   }
-  .label::after { content: ""; height: 1px; flex: 1; background: var(--grid); }
+  .label::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  section.block { padding-block: 64px; border-top: 1px solid var(--rule); }
+  h2 {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 2.9rem);
+    line-height: 1;
+    letter-spacing: .01em;
+    text-transform: uppercase;
+    margin: 14px 0 28px;
+    text-wrap: balance;
+  }
+  h3 {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 1.3rem;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+  }
+  p { margin: 0; }
+  .prose { display: grid; gap: 14px; max-width: 64ch; }
+  .prose strong { font-weight: 600; }
 
   /* Hero */
-  .hero { padding: 56px 0 40px; }
+  .hero { padding-block: 72px 64px; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 40px;
+    align-items: end;
+  }
   .hero h1 {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: clamp(3.2rem, 13vw, 7.5rem);
-    line-height: .92;
-    letter-spacing: .01em;
+    font-size: clamp(3.6rem, 12vw, 8.4rem);
+    line-height: .88;
+    letter-spacing: .005em;
     text-transform: uppercase;
-    margin: 10px 0 6px;
-    text-wrap: balance;
+    margin: 18px 0 18px;
   }
   .hero .role {
     font-family: var(--font-head);
-    font-weight: 600;
-    font-size: clamp(1.15rem, 3vw, 1.6rem);
-    text-transform: uppercase;
-    letter-spacing: .03em;
-    color: var(--accent);
-    margin: 0 0 18px;
-  }
-  .hero .tagline {
-    max-width: 38em;
-    font-size: 1.1rem;
-    color: var(--muted);
-    margin: 0 0 30px;
-  }
-  .hero .cta { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn {
-    font-family: var(--font-mono);
-    font-size: .82rem;
+    font-weight: 700;
+    font-size: clamp(1.2rem, 2.6vw, 1.55rem);
     letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .hero .tagline { font-size: 1.18rem; color: var(--muted); max-width: 36em; margin-bottom: 30px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: .8rem;
+    letter-spacing: .05em;
     text-transform: uppercase;
     text-decoration: none;
     padding: 11px 18px;
     border: 1.5px solid var(--line);
     border-radius: 3px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+    transition: border-color .15s, color .15s, background-color .15s;
   }
-  .btn.primary { background: var(--accent); color: var(--accent-contrast); border-color: var(--accent); }
-  .btn:not(.primary):hover, .btn:not(.primary):focus-visible { border-color: var(--accent); color: var(--accent); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-contrast); }
+  .btn.primary:hover { filter: brightness(1.06); }
+  .btn:not(.primary):hover { border-color: var(--accent); color: var(--accent); }
 
-  /* Title block, drafting-sheet convention */
   .titleblock {
-    margin-top: 44px;
     border: 1.5px solid var(--line);
+    background: var(--rule);
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    font-family: var(--font-mono);
-    font-size: .74rem;
-    max-width: 560px;
-  }
-  .titleblock div { padding: 8px 12px; border-right: 1px solid var(--grid); border-bottom: 1px solid var(--grid); }
-  .titleblock div:nth-child(4n) { border-right: none; }
-  .titleblock .k { color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-size: .62rem; margin-bottom: 3px; display: block; }
-
-  section { padding: 54px 0; border-top: 1px solid var(--grid); }
-  section h2 {
-    font-family: var(--font-head);
-    font-weight: 700;
-    font-size: clamp(1.6rem, 4vw, 2.2rem);
-    text-transform: uppercase;
-    letter-spacing: .02em;
-    margin: 10px 0 22px;
-  }
-
-  .about p { max-width: 62ch; font-size: 1.05rem; line-height: 1.65; color: var(--fg); }
-  .about .spec {
-    margin-top: 28px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: 1fr 1fr;
     gap: 1px;
-    background: var(--grid);
-    border: 1px solid var(--grid);
-  }
-  .about .spec > div { background: var(--bg); padding: 14px 16px; }
-  .about .spec .k { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 4px; }
-  .about .spec .v { font-family: var(--font-mono); font-size: .92rem; }
-
-  .projects .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 18px;
-  }
-  .card {
-    border: 1.5px dashed var(--grid);
-    border-radius: 4px;
-    padding: 22px;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    min-height: 160px;
-  }
-  .card .tag {
     font-family: var(--font-mono);
-    font-size: .68rem;
-    letter-spacing: .08em;
+    font-size: .8rem;
+  }
+  .titleblock > div { padding: 10px 14px; background: var(--surface); min-width: 0; }
+  .titleblock > div.full { grid-column: 1 / -1; }
+  .titleblock .k {
+    display: block;
+    font-size: .62rem;
+    letter-spacing: .1em;
     text-transform: uppercase;
     color: var(--muted);
+    margin-bottom: 2px;
   }
-  .card h3 {
-    font-family: var(--font-head);
-    font-size: 1.15rem;
-    margin: 0;
-    color: var(--muted);
-    font-weight: 600;
-  }
-  .card p { margin: 0; color: var(--muted); font-size: .92rem; flex: 1; }
+  .titleblock .big { font-family: var(--font-head); font-weight: 800; font-size: 1.25rem; letter-spacing: .03em; text-transform: uppercase; }
 
-  .contact .row {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
+  /* Project index */
+  .index {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: 18px;
+    margin-bottom: 8px;
   }
-  .contact .note { color: var(--muted); max-width: 48ch; margin: 0 0 22px; }
+  .index a {
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr);
+    gap: 16px;
+    align-items: center;
+    text-decoration: none;
+    border: 1.5px solid var(--rule);
+    background: var(--surface);
+    padding: 12px;
+    border-radius: 4px;
+    transition: border-color .15s, transform .15s;
+  }
+  .index a:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .index .thumb { aspect-ratio: 1; background: var(--plate); overflow: hidden; border-radius: 2px; }
+  .index .thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .index h3 { font-size: 1.12rem; margin: 4px 0 4px; }
+  .index p { font-size: .92rem; color: var(--muted); line-height: 1.45; }
+
+  /* Case study */
+  .case { padding-top: 56px; }
+  .case + .case { margin-top: 40px; border-top: 1px dashed var(--rule); }
+  .case-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 32px;
+    align-items: start;
+    margin-bottom: 30px;
+  }
+  .case-head h3.title {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    line-height: 1.02;
+    margin: 10px 0 16px;
+    text-wrap: balance;
+  }
+  .case-head .lede { font-size: 1.08rem; color: var(--muted); max-width: 52ch; }
+
+  .readings {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border: 1.5px solid var(--line);
+    margin-bottom: 40px;
+    background: var(--surface);
+  }
+  .readings > div { padding: 16px 18px; border-right: 1px solid var(--rule); min-width: 0; }
+  .readings > div:last-child { border-right: none; }
+  .readings .v {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: clamp(1.6rem, 3.4vw, 2.15rem);
+    line-height: 1.05;
+    font-variant-numeric: tabular-nums;
+    color: var(--fg);
+  }
+  .readings .v small { font-size: .55em; font-weight: 700; color: var(--accent); margin-left: 2px; letter-spacing: .02em; }
+  .readings .d { font-size: .86rem; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+
+  .case-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 40px;
+    align-items: start;
+  }
+  .stack { display: grid; gap: 30px; min-width: 0; }
+  ul.points { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+  ul.points li { position: relative; padding-left: 22px; }
+  ul.points li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: .72em;
+    width: 11px; height: 1.5px;
+    background: var(--accent);
+  }
+
+  figure { margin: 0; min-width: 0; }
+  .plate {
+    background: var(--plate);
+    border: 1px solid var(--rule);
+    padding: 10px;
+    border-radius: 2px;
+  }
+  .plate img { width: 100%; height: auto; margin: 0 auto; }
+  .plate.photo { padding: 0; overflow: hidden; }
+  .plate.photo img { width: 100%; height: 100%; object-fit: cover; }
+  figcaption {
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    letter-spacing: .02em;
+    color: var(--muted);
+    margin-top: 8px;
+    line-height: 1.45;
+  }
+  figcaption b { color: var(--accent); font-weight: 500; }
+  .fig-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .fig-pair .plate.photo { aspect-ratio: 4 / 3; }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--rule); background: var(--surface); }
+  table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+  th, td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  th {
+    font-family: var(--font-mono);
+    font-size: .66rem;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--accent-soft);
+  }
+  td.mono, td code { font-family: var(--font-mono); font-size: .82rem; white-space: nowrap; }
+  td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+
+  .calc {
+    border: 1.5px solid var(--line);
+    background: var(--surface);
+    padding: 16px 18px;
+    font-family: var(--font-mono);
+    font-size: .86rem;
+    line-height: 1.8;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .calc .k { color: var(--muted); }
+  .calc .ok { color: var(--accent); }
+
+  .note {
+    border-left: 2px solid var(--accent);
+    padding: 4px 0 4px 16px;
+    color: var(--muted);
+    font-size: .96rem;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    letter-spacing: .03em;
+    padding: 4px 9px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    color: var(--muted);
+    background: var(--surface);
+  }
+
+  /* About / skills */
+  .about-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 48px; align-items: start; }
+  .skills { display: grid; gap: 22px; }
+  .skills h4 {
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 10px;
+  }
+
+  .contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: end; }
+  .contact-grid p { max-width: 46ch; color: var(--muted); font-size: 1.08rem; }
 
   footer {
-    border-top: 1px solid var(--grid);
-    padding: 22px 0 0;
+    border-top: 1px solid var(--rule);
+    padding-top: 22px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 20px;
     font-family: var(--font-mono);
     font-size: .72rem;
     letter-spacing: .04em;
     color: var(--muted);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px;
   }
 
-  @media (max-width: 560px) {
-    .titleblock { grid-template-columns: repeat(2, 1fr); }
-    .titleblock div:nth-child(4n) { border-right: 1px solid var(--grid); }
-    .titleblock div:nth-child(2n) { border-right: none; }
+  /* Responsive */
+  @media (max-width: 880px) {
+    .hero-grid, .case-head, .case-body, .about-grid { grid-template-columns: minmax(0, 1fr); }
+    .readings { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .readings > div:nth-child(2) { border-right: none; }
+    .readings > div:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+    .contact-grid { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 480px) {
+    body { font-size: 16px; }
+    .index a { grid-template-columns: 84px minmax(0, 1fr); }
+    .fig-pair { grid-template-columns: 1fr; }
+    .readings .v { font-size: 1.5rem; }
   }
 
+  /* Motion */
   @media (prefers-reduced-motion: no-preference) {
-    .draw-in { stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 1.4s ease forwards .2s; }
-    @keyframes draw { to { stroke-dashoffset: 0; } }
-    .fade-up { opacity: 0; transform: translateY(10px); animation: fadeUp .6s ease forwards .15s; }
-    @keyframes fadeUp { to { opacity: 1; transform: none; } }
+    .rise { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+    .rise.d1 { animation-delay: .08s; }
+    .rise.d2 { animation-delay: .16s; }
+    .rise.d3 { animation-delay: .24s; }
+    @keyframes rise { from { opacity: .4; transform: translateY(12px); } to { opacity: 1; transform: none; } }
   }
 </style>
-
+</head>
+<body>
 <div class="sheet">
   <header class="bar">
-    <span class="wordmark">Z. Houachmi</span>
-    <nav class="links">
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <button id="theme-toggle" type="button" aria-pressed="false">Dark sheet</button>
+    <div class="wrap">
+      <a class="wordmark" href="#top">Zayd <span>Houachmi</span></a>
+      <nav class="nav" aria-label="Sections">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <button id="theme-toggle" type="button" aria-pressed="false">Blueprint</button>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section class="hero fade-up">
-      <div class="label">Sheet 01 — Profile</div>
-      <h1>Zayed<br>Houachmi</h1>
-      <p class="role">Mechanical Engineer</p>
-      <p class="tagline">Turning constraints into working parts — from first sketch to final tolerance stack.</p>
-      <div class="cta">
-        <a class="btn primary" href="#contact">Get in touch</a>
-        <a class="btn" href="https://github.com/ZaydHouachmi" target="_blank" rel="noopener">GitHub ↗</a>
-        <a class="btn" href="https://www.linkedin.com/in/zayd-houachmi-b5578735a/" target="_blank" rel="noopener">LinkedIn ↗</a>
-      </div>
-
-      <div class="titleblock">
-        <div><span class="k">Name</span>Houachmi, Z.</div>
-        <div><span class="k">Discipline</span>Mech. Eng.</div>
-        <div><span class="k">Rev</span>A</div>
-        <div><span class="k">Scale</span>1:1</div>
+  <main class="wrap" id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="label rise">Sheet 01 · Profile</div>
+      <div class="hero-grid">
+        <div>
+          <h1 class="rise d1">Zayd<br>Houachmi</h1>
+          <p class="role rise d2">Mechanical Engineering · University of Ottawa</p>
+          <p class="tagline rise d2">I like problems with a physical answer: a turbine that has to produce, a part that has to fit, airflow that has to be just enough. I model it, build it, then test whether I was right.</p>
+          <div class="cta rise d3">
+            <a class="btn primary" href="#work">See my work</a>
+            <a class="btn" href="https://www.linkedin.com/in/zayd-houachmi-b5578735a/" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a class="btn" href="https://github.com/ZaydHouachmi" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+        <div class="titleblock rise d3" aria-label="Profile summary">
+          <div class="full"><span class="k">Drawn by</span><span class="big">Z. Houachmi</span></div>
+          <div><span class="k">Discipline</span>Mechanical Eng.</div>
+          <div><span class="k">Year</span>2nd year</div>
+          <div><span class="k">Institution</span>uOttawa</div>
+          <div><span class="k">Languages</span>FR · EN</div>
+          <div><span class="k">Focus</span>Energy · Design</div>
+          <div><span class="k">Status</span>Open to internships</div>
+          <div class="full"><span class="k">Sheet</span>01 of 04 · Rev B · Scale 1:1</div>
+        </div>
       </div>
     </section>
 
-    <section id="about" class="about">
-      <div class="label">Sheet 02 — About</div>
+    <!-- Work -->
+    <section class="block" id="work">
+      <div class="label">Sheet 02 · Work</div>
+      <h2>Selected projects</h2>
+
+      <div class="index">
+        <a href="#greenard">
+          <div class="thumb"><img src="assets/greenard-grid.png" alt="" loading="lazy"></div>
+          <div>
+            <span class="eyebrow">Internship · 2026</span>
+            <h3>Wind farm energy yield</h3>
+            <p>WAsP resource study plus my own Python wake and AEP model.</p>
+          </div>
+        </a>
+        <a href="#zeiku">
+          <div class="thumb"><img src="assets/zeiku-prototype.jpg" alt="" loading="lazy"></div>
+          <div>
+            <span class="eyebrow">Design project · 2025</span>
+            <h3>ZEIKU swab dryer</h3>
+            <p>Sealed, sensor-controlled DNA swab dryer for the Ottawa Police.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Project 01: Greenard -->
+      <article class="case" id="greenard">
+        <div class="case-head">
+          <div>
+            <span class="eyebrow">Project 01 · Wind resource engineering</span>
+            <h3 class="title">From a 10&nbsp;m mast to a wind farm's annual energy</h3>
+            <p class="lede">During a four-week internship at Greenard, a wind-energy studies firm in Casablanca, I learned the industry workflow for assessing a wind site in WAsP. Then I wrote my own Python tool that reproduces the core of it: wake models, Weibull integration and a loss cascade.</p>
+          </div>
+          <div class="titleblock">
+            <div class="full"><span class="k">Organisation</span>Greenard · Casablanca, Morocco</div>
+            <div><span class="k">Dates</span>Jun 22 – Jul 17, 2026</div>
+            <div><span class="k">Type</span>Internship</div>
+            <div class="full"><span class="k">Tools</span>WAsP 10 · Python · Streamlit</div>
+          </div>
+        </div>
+
+        <div class="readings">
+          <div><div class="v">4.90<small>m/s</small></div><div class="d">Mean wind measured at the station, 10&nbsp;m height</div></div>
+          <div><div class="v">7.85<small>m/s</small></div><div class="d">Predicted at turbine site 003, 50&nbsp;m hub height</div></div>
+          <div><div class="v">3.149<small>GWh/yr</small></div><div class="d">Net annual energy at site 003, 1.13% wake loss</div></div>
+          <div><div class="v">5.1→17.6<small>%</small></div><div class="d">Capacity factor of a 6&nbsp;MW farm, raw vs corrected wind climate</div></div>
+        </div>
+
+        <div class="case-body">
+          <div class="stack">
+            <div class="prose">
+              <h3>The problem</h3>
+              <p>Wind is measured at one mast, often low and in the wrong place, but turbines sit higher and on different terrain. Since power scales with <strong>V³</strong>, a 1&nbsp;m/s error in mean speed can make or break a project. The job is to carry a measurement correctly across height, terrain roughness and relief.</p>
+            </div>
+
+            <div class="prose">
+              <h3>What I did in WAsP</h3>
+              <ul class="points">
+                <li>Analysed the observed wind climate (12 direction sectors, Weibull fit per sector). West to north-west dominates, with over 32% of the time.</li>
+                <li>Generalised it into a Wind Atlas across 5 roughness classes and 5 heights, which removes the local effects of the measurement site.</li>
+                <li>Ran a 180-point resource grid at 50&nbsp;m over the "Crest" terrain. Mean speed ranges from 6.52 to 8.19&nbsp;m/s, and the best corridor follows the ridge.</li>
+                <li>Assessed a single turbine site in detail, with up to +14.3% speed-up from terrain in the 270° sector, and confirmed RIX&nbsp;=&nbsp;0% so the linear model stays valid.</li>
+              </ul>
+            </div>
+
+            <div class="prose">
+              <h3>The Python tool I built</h3>
+              <p>To really understand what WAsP does inside, I wrote a modular energy-yield model with a Streamlit front end. It integrates turbine output over every sector and every 1&nbsp;m/s speed bin of the Weibull distribution, then applies six post-wake losses (availability, electrical, turbine performance and others).</p>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Module</th><th>Responsibility</th></tr></thead>
+                <tbody>
+                  <tr><td class="mono">wake_model.py</td><td>Jensen (linear wake expansion) and Ainslie eddy-viscosity, solved with an RK45 integrator</td></tr>
+                  <tr><td class="mono">wind_resource.py</td><td>Wind rose with a Weibull distribution per sector</td></tr>
+                  <tr><td class="mono">wind_farm.py</td><td>Downwind and crosswind distances for every turbine pair</td></tr>
+                  <tr><td class="mono">power_curve.py</td><td>Cut-in, ramp-up, rated plateau and cut-out</td></tr>
+                  <tr><td class="mono">energy_yield.py</td><td>Per-turbine AEP, loss cascade and capacity factor</td></tr>
+                  <tr><td class="mono">app.py</td><td>Streamlit interface for layout, wind rose and loss inputs</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="note"><strong>Validation.</strong> Fed the station's sector table, the tool recomputes a 4.90&nbsp;m/s mean, which matches WAsP exactly. I also found its limit: putting all the wind in one direction exaggerates wake losses (62% on the third turbine in a row) compared with 1.13% when WAsP uses all 12 real sectors. That showed me why a realistic wind rose matters.</div>
+          </div>
+
+          <div class="stack">
+            <figure>
+              <div class="plate"><img src="assets/greenard-grid.png" alt="WAsP resource grid map: mean wind speed at 50 m over the Crest terrain, overlaid on contour lines, ranging from 6.52 to 8.19 m/s" loading="lazy"></div>
+              <figcaption><b>Fig. 1.1</b> Resource grid "Crest", mean speed at 50&nbsp;m over terrain contours (WAsP). Faster wind (red) follows the ridge.</figcaption>
+            </figure>
+            <figure>
+              <div class="plate"><img src="assets/greenard-rose.png" alt="Wind rose and Weibull histogram of the observed wind climate: mean 4.90 m/s, power density 135 W/m²" loading="lazy"></div>
+              <figcaption><b>Fig. 1.2</b> Observed wind climate at 10&nbsp;m: wind rose and Weibull distribution. U&nbsp;=&nbsp;4.90&nbsp;m/s, P&nbsp;=&nbsp;135&nbsp;W/m².</figcaption>
+            </figure>
+            <figure>
+              <div class="plate"><img src="assets/greenard-layout.png" alt="Python tool output: 3 by 2 grid of six turbines, T01 to T06, spaced 450 m apart, with wind arriving from 270 degrees at 9 m/s" loading="lazy"></div>
+              <figcaption><b>Fig. 1.3</b> Output from my tool: a 3×2 layout of six 1&nbsp;MW turbines, 5 rotor diameters apart, with wind from 270°.</figcaption>
+            </figure>
+            <div class="tags" aria-label="Skills used">
+              <span class="tag">Wind resource assessment</span><span class="tag">Weibull statistics</span><span class="tag">Wake modelling</span><span class="tag">AEP</span><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">WAsP</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 02: ZEIKU -->
+      <article class="case" id="zeiku">
+        <div class="case-head">
+          <div>
+            <span class="eyebrow">Project 02 · Mechanical design &amp; prototyping</span>
+            <h3 class="title">ZEIKU: a contamination-free DNA swab dryer</h3>
+            <p class="lede">Ottawa Police labs dry forensic swabs by hand and judge dryness by eye. Our five-person team designed a sealed, portable box that dries two swabs side by side without cross-contamination, measures humidity in real time and lights up when each swab is dry.</p>
+          </div>
+          <div class="titleblock">
+            <div class="full"><span class="k">Client</span>Ottawa Police Service</div>
+            <div><span class="k">Course</span>GNG1503 · uOttawa</div>
+            <div><span class="k">Date</span>Fall 2025</div>
+            <div><span class="k">Team</span>5 students</div>
+            <div><span class="k">My role</span>Mechanical</div>
+          </div>
+        </div>
+
+        <div class="readings">
+          <div><div class="v">19×19×29<small>cm</small></div><div class="d">Sealed acrylic enclosure</div></div>
+          <div><div class="v">≥3<small>cm</small></div><div class="d">Minimum swab spacing, set by our cross-contamination test</div></div>
+          <div><div class="v">2.6<small>CFM</small></div><div class="d">Airflow needed. The 40&nbsp;mm fan supplies 3 to 5</div></div>
+          <div><div class="v">+2<small>% RH</small></div><div class="d">Dryness threshold relative to ambient humidity</div></div>
+        </div>
+
+        <div class="case-body">
+          <div class="stack">
+            <div class="prose">
+              <h3>Mechanical design</h3>
+              <ul class="points">
+                <li><strong>Enclosure:</strong> rigid, non-porous acrylic that is easy to disinfect, reinforced with 3D-printed PLA corner brackets.</li>
+                <li><strong>Sliding door on rails</strong>, so the box opens in one motion without disturbing the samples.</li>
+                <li><strong>Rail-mounted, removable shelves</strong> for the swab holder and the electronics. Everything comes out for cleaning without tools.</li>
+                <li><strong>Ventilation:</strong> 5×5&nbsp;cm cut-out, 3D-printed fan mount with M3 screws, outer grille and a foam-filter frame.</li>
+              </ul>
+            </div>
+
+            <div class="prose">
+              <h3>Design decisions</h3>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Choice</th><th>Picked</th><th>Why</th></tr></thead>
+                  <tbody>
+                    <tr><td>Fan size</td><td class="mono">40 mm</td><td>Best flow-to-noise trade-off. 30 and 60&nbsp;mm were considered and rejected</td></tr>
+                    <tr><td>Filter</td><td class="mono">Fine foam</td><td>HEPA is too restrictive for a small 40&nbsp;mm fan</td></tr>
+                    <tr><td>Mount material</td><td class="mono">PLA</td><td>Easy to print and not thermally critical, so no need for PETG</td></tr>
+                    <tr><td>Humidity sensors</td><td class="mono">DHT11</td><td>Accurate enough in testing, so the pricier DHT22 wasn't needed</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="prose">
+              <h3>Sizing the airflow</h3>
+              <div class="calc">
+                <span class="k">opening</span>   A = 5 cm × 5 cm = 0.0025 m²<br>
+                <span class="k">target</span>    v ≈ 0.5 m/s<br>
+                <span class="k">flow</span>      Q = A·v = 0.00125 m³/s ≈ 4.5 m³/h ≈ <span class="ok">2.6 CFM</span><br>
+                <span class="k">supply</span>    5 V 40 mm fan → 3–5 CFM <span class="ok">✓ adequate</span>
+              </div>
+            </div>
+
+            <div class="prose">
+              <h3>Testing</h3>
+              <ul class="points">
+                <li><strong>Cross-contamination:</strong> two swabs at 1, 3 and 5&nbsp;cm, one marked with a tracer, fan running for 30&nbsp;min. Contaminated at 1&nbsp;cm, clean at 3 and 5&nbsp;cm, which set the ≥3&nbsp;cm spacing rule.</li>
+                <li><strong>Fan mount:</strong> steady airflow with the filter in place and no excessive vibration. Approved for the integrated prototype.</li>
+                <li><strong>Dryness detection:</strong> a wet swab placed under each sensor turned its LED green once dry, on every trial.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="stack">
+            <figure>
+              <div class="plate photo" style="aspect-ratio: 3 / 4; max-height: 520px;"><img src="assets/zeiku-prototype.jpg" alt="Assembled ZEIKU prototype: clear acrylic box with electronics shelf on top and swab holders below" loading="lazy"></div>
+              <figcaption><b>Fig. 2.1</b> Final prototype: electronics shelf above, swab chamber below, all on internal rails.</figcaption>
+            </figure>
+            <div class="fig-pair">
+              <figure>
+                <div class="plate photo"><img src="assets/zeiku-fan.jpg" alt="Back of the box showing the 3D-printed green fan mount and filter frame" loading="lazy"></div>
+                <figcaption><b>Fig. 2.2</b> 3D-printed fan mount and filter frame.</figcaption>
+              </figure>
+              <figure>
+                <div class="plate photo"><img src="assets/zeiku-top.jpg" alt="Inside view of the enclosure with the removable shelves and PLA corner brackets" loading="lazy"></div>
+                <figcaption><b>Fig. 2.3</b> Removable shelves and PLA corner brackets.</figcaption>
+              </figure>
+            </div>
+            <figure>
+              <div class="plate"><img src="assets/zeiku-circuit.jpg" alt="Circuit diagram: Arduino Uno with three DHT11 sensors, a 16x2 LCD, two green LEDs, an HC-05 Bluetooth module and batteries" loading="lazy"></div>
+              <figcaption><b>Fig. 2.4</b> Team circuit: Arduino Uno, 3× DHT11, LCD, status LEDs and HC-05 Bluetooth that logs to Excel.</figcaption>
+            </figure>
+            <div class="tags" aria-label="Skills used">
+              <span class="tag">Mechanical design</span><span class="tag">3D printing</span><span class="tag">Laser cutting</span><span class="tag">Acrylic fabrication</span><span class="tag">Airflow sizing</span><span class="tag">Prototype testing</span><span class="tag">Client needs</span>
+            </div>
+            <a class="btn" href="https://makerepo.com/ZaydHB/2774.zeiku" target="_blank" rel="noopener" style="justify-self: start;">Project on MakerRepo ↗</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- About -->
+    <section class="block" id="about">
+      <div class="label">Sheet 03 · About</div>
       <h2>About</h2>
-      <p>Zayed is a mechanical engineer who likes problems with a physical answer: a part that has to fit, a load that has to be carried, a mechanism that has to move the same way every time. This portfolio is a working sheet — it'll fill in with real projects, drawings, and write-ups as they're added.</p>
-      <div class="spec">
-        <div><span class="k">Focus</span><span class="v">Design &amp; analysis</span></div>
-        <div><span class="k">Status</span><span class="v">Open to work</span></div>
-        <div><span class="k">Based</span><span class="v">—</span></div>
-        <div><span class="k">Tools</span><span class="v">CAD / FEA / etc.</span></div>
-      </div>
-    </section>
-
-    <section id="projects" class="projects">
-      <div class="label">Sheet 03 — Projects</div>
-      <h2>Projects</h2>
-      <div class="grid">
-        <div class="card">
-          <span class="tag">Slot 01 — TBD</span>
-          <h3>First project</h3>
-          <p>Reserved for the first write-up: problem, approach, result.</p>
+      <div class="about-grid">
+        <div class="prose">
+          <p>I'm a second-year mechanical engineering student at the University of Ottawa. I'm drawn to energy systems and to hands-on design, where the numbers on paper have to survive contact with a real prototype.</p>
+          <p>My first year included the ZEIKU project for a real client. That summer I interned at Greenard in Casablanca, learning how wind farms are assessed before anything is built. I left with a working WAsP workflow and a Python model of my own.</p>
+          <p>I work comfortably in both French and English, and I'm looking for internships in mechanical design, energy or renewables.</p>
         </div>
-        <div class="card">
-          <span class="tag">Slot 02 — TBD</span>
-          <h3>Second project</h3>
-          <p>Reserved for the next one.</p>
-        </div>
-        <div class="card">
-          <span class="tag">Slot 03 — TBD</span>
-          <h3>Third project</h3>
-          <p>Reserved for the next one.</p>
+        <div class="skills">
+          <div>
+            <h4>Design &amp; fabrication</h4>
+            <div class="tags"><span class="tag">Mechanical design</span><span class="tag">CAD</span><span class="tag">3D printing (PLA)</span><span class="tag">Laser cutting</span><span class="tag">Prototyping</span></div>
+          </div>
+          <div>
+            <h4>Analysis</h4>
+            <div class="tags"><span class="tag">Wind resource assessment</span><span class="tag">Wake models</span><span class="tag">Weibull statistics</span><span class="tag">Airflow sizing</span><span class="tag">Test design</span></div>
+          </div>
+          <div>
+            <h4>Software</h4>
+            <div class="tags"><span class="tag">WAsP</span><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Arduino</span><span class="tag">Excel</span></div>
+          </div>
+          <div>
+            <h4>Languages</h4>
+            <div class="tags"><span class="tag">French</span><span class="tag">English</span></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="contact">
-      <div class="label">Sheet 04 — Contact</div>
-      <h2>Contact</h2>
-      <p class="note">The quickest ways to reach Zayed right now:</p>
-      <div class="row">
-        <a class="btn primary" href="https://www.linkedin.com/in/zayd-houachmi-b5578735a/" target="_blank" rel="noopener">LinkedIn ↗</a>
-        <a class="btn" href="https://github.com/ZaydHouachmi" target="_blank" rel="noopener">GitHub ↗</a>
+    <!-- Contact -->
+    <section class="block" id="contact">
+      <div class="label">Sheet 04 · Contact</div>
+      <h2>Let's talk</h2>
+      <div class="contact-grid">
+        <p>Looking for an intern who'll model it, build it, and check the numbers? The best way to reach me is LinkedIn.</p>
+        <div class="cta">
+          <a class="btn primary" href="https://www.linkedin.com/in/zayd-houachmi-b5578735a/" target="_blank" rel="noopener">Message on LinkedIn ↗</a>
+          <a class="btn" href="https://github.com/ZaydHouachmi" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
       </div>
     </section>
 
     <footer>
-      <span>© 2026 Zayed Houachmi</span>
-      <span>Drawn, not printed.</span>
+      <span>© 2026 Zayd Houachmi</span>
+      <span>Ottawa, ON · Rev B</span>
     </footer>
   </main>
 </div>
@@ -368,17 +764,28 @@
   (function () {
     var btn = document.getElementById('theme-toggle');
     var root = document.documentElement;
-    function apply(mode) {
-      if (mode === 'dark') { root.setAttribute('data-theme', 'dark'); btn.textContent = 'Light sheet'; btn.setAttribute('aria-pressed', 'true'); }
-      else { root.setAttribute('data-theme', 'light'); btn.textContent = 'Dark sheet'; btn.setAttribute('aria-pressed', 'false'); }
+    var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+    function isDark() {
+      var t = root.getAttribute('data-theme');
+      return t ? t === 'dark' : !!(mq && mq.matches);
+    }
+    function label() {
+      var dark = isDark();
+      btn.textContent = dark ? 'Vellum' : 'Blueprint';
+      btn.setAttribute('aria-pressed', String(dark));
     }
     var saved = null;
     try { saved = localStorage.getItem('zh-theme'); } catch (e) {}
-    if (saved) apply(saved);
+    if (saved === 'dark' || saved === 'light') root.setAttribute('data-theme', saved);
+    label();
+    if (mq && mq.addEventListener) mq.addEventListener('change', label);
     btn.addEventListener('click', function () {
-      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      apply(next);
+      var next = isDark() ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
       try { localStorage.setItem('zh-theme', next); } catch (e) {}
+      label();
     });
   })();
 </script>
+</body>
+</html>

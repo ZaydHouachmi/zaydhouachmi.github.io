@@ -28,6 +28,22 @@
 
   document.querySelectorAll('[data-wake]').forEach(initWake);
 
+  // Looping CAD clips: respect reduced motion, and only play while on screen.
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var clips = document.querySelectorAll('.cad-motion video');
+  clips.forEach(function (v) {
+    if (reduceMotion) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; }
+  });
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { var p = e.target.play(); if (p && p.catch) p.catch(function () {}); }
+        else e.target.pause();
+      });
+    }, { threshold: 0.15 });
+    clips.forEach(function (v) { io.observe(v); });
+  }
+
   // Jensen (Park) wake model with root-sum-square superposition.
   function initWake(el) {
     var D = 54, R = D / 2, CT = 0.8, PR = 1000, VIN = 3, VR = 12, VOUT = 25;

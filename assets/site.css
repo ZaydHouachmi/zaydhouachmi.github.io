@@ -390,6 +390,33 @@ figure { margin: 0; min-width: 0; }
 figcaption { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .02em; color: var(--muted); margin-top: 8px; line-height: 1.45; }
 figcaption b { color: var(--accent); font-weight: 500; }
 .fig-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.lead-pair { display: grid; grid-template-columns: minmax(0, 1.865fr) minmax(0, 1.039fr); gap: 14px; align-items: start; }
+
+/* SolidWorks screen recording: its own light-grey studio background, same in both themes */
+.cad-motion { position: relative; background: #DCDCD9; }
+.cad-motion video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.feature .media.cad-motion {
+  display: block;
+  background:
+    linear-gradient(#E3E4DF, #ECECEC 50%, #DDDDDB) left / 50% 100% no-repeat,
+    linear-gradient(#DDDDDF, #E1E1DF 50%, #D6D7D2) right / 50% 100% no-repeat;
+}
+.feature .media.cad-motion video {
+  position: absolute; inset: 0; object-fit: contain; transition: transform .5s;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.feature:hover .media.cad-motion video { transform: scale(1.025); }
+.live-tag {
+  position: absolute; left: 10px; top: 10px; display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--font-mono); font-size: .64rem; letter-spacing: .08em; text-transform: uppercase;
+  color: #F4F6F8; background: rgba(24,34,45,.84); padding: 4px 8px; border-radius: 2px; pointer-events: none;
+}
+.live-tag::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #E5532A; }
+@media (prefers-reduced-motion: no-preference) {
+  .live-tag::before { animation: blink 1.6s steps(2, start) infinite; }
+  @keyframes blink { to { visibility: hidden; } }
+}
 .fig-pair .plate.photo { aspect-ratio: 4 / 3; }
 
 .calc {
@@ -415,7 +442,8 @@ figcaption b { color: var(--accent); font-weight: 500; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 920px) {
-  .hero-grid, .case-top, .case-body, .wake-grid, .contact-card { grid-template-columns: minmax(0, 1fr); }
+  .hero-grid, .case-top, .case-body, .wake-grid, .contact-card, .lead-pair { grid-template-columns: minmax(0, 1fr); }
+  .lead-pair .cad-motion { max-width: 460px; }
   .feature, .feature.flip { grid-template-columns: minmax(0, 1fr); }
   .feature .media, .feature.flip .media { order: 0; border: none; border-bottom: 1px solid var(--rule); min-height: 0; aspect-ratio: 16 / 10; }
   .wake-canvas { border-right: none; border-bottom: 1px solid var(--rule); }

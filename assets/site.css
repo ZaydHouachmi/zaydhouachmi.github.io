@@ -284,6 +284,26 @@ ul.points li::before {
 }
 .go span { transition: transform .2s; display: inline-block; }
 
+/* Data sheet: a fixed blueprint panel (same look in both themes) for projects without photos yet */
+.feature .media.datasheet {
+  background-color: #0A2342;
+  background-image:
+    linear-gradient(rgba(207,228,247,.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(207,228,247,.09) 1px, transparent 1px);
+  background-size: 22px 22px;
+  color: #EAF2FB;
+  padding: clamp(22px, 4vw, 40px);
+  place-items: center start;
+}
+.ds { display: grid; gap: 10px; width: 100%; max-width: 440px; }
+.ds-k { display: block; font-family: var(--font-mono); font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; color: #97AFCB; }
+.ds-big { font-family: var(--font-display); font-weight: 800; font-size: clamp(3.2rem, 7vw, 5.2rem); line-height: .9; color: #FF8148; letter-spacing: .01em; }
+.ds-big sub { font-size: .42em; }
+.ds-mid { font-family: var(--font-head); font-weight: 800; font-size: clamp(1.6rem, 3vw, 2.2rem); text-transform: uppercase; letter-spacing: .02em; }
+.ds-mid em { font-style: normal; color: #97AFCB; font-size: .6em; letter-spacing: .06em; }
+.ds-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 10px; background: rgba(207,228,247,.25); border: 1px solid rgba(207,228,247,.5); }
+.ds-row > div { background: #0A2342; padding: 10px 12px; font-family: var(--font-mono); font-size: .78rem; }
+
 /* ---------- Wake demo ---------- */
 .wake { border: 1.5px solid var(--line); background: var(--surface); }
 .wake-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); }
@@ -328,6 +348,27 @@ ul.points li::before {
 .tl-what .org { color: var(--accent); font-weight: 600; margin-bottom: 12px; display: block; }
 .tl-what .points { font-size: .98rem; }
 
+.flow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border: 1.5px solid var(--line); background: var(--rule); gap: 1px; }
+.flow > div { background: var(--surface); padding: 16px 18px 16px 18px; position: relative; display: grid; gap: 4px; align-content: start; }
+.flow > div:not(:last-child)::after {
+  content: "→"; position: absolute; right: -9px; top: 50%; transform: translateY(-50%); z-index: 1;
+  width: 18px; height: 18px; display: grid; place-items: center; font-size: .75rem;
+  background: var(--accent); color: var(--accent-contrast); border-radius: 50%;
+}
+.flow strong { font-family: var(--font-head); font-weight: 800; font-size: 1.3rem; text-transform: uppercase; letter-spacing: .02em; }
+.flow p { font-size: .86rem; color: var(--muted); line-height: 1.4; }
+@media (max-width: 760px) {
+  .flow { grid-template-columns: minmax(0, 1fr); }
+  .flow > div:not(:last-child)::after { content: "↓"; right: auto; left: 18px; top: auto; bottom: -9px; transform: none; }
+}
+
+.also { margin-top: 48px; padding-top: 32px; border-top: 1px dashed var(--rule); }
+.also h3 { margin-bottom: 18px; }
+.also-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 14px; }
+.also-grid > div { border: 1px solid var(--rule); background: var(--surface); padding: 16px 18px; display: grid; gap: 6px; align-content: start; }
+.also-grid strong { font-weight: 600; line-height: 1.3; }
+.also-grid p { font-size: .92rem; color: var(--muted); line-height: 1.5; }
+
 /* ---------- Skills evidence table ---------- */
 .table-wrap { overflow-x: auto; border: 1px solid var(--rule); background: var(--surface); }
 table { width: 100%; border-collapse: collapse; font-size: .92rem; }
@@ -353,6 +394,11 @@ td.mono { font-family: var(--font-mono); font-size: .82rem; white-space: nowrap;
 .contact-card h2 { margin-top: 0; }
 .contact-card p { color: var(--muted); font-size: 1.1rem; max-width: 40ch; }
 .contact-card .btn { justify-content: space-between; }
+.contact-card p strong { color: var(--fg); font-weight: 600; }
+.email-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--rule); }
+.email-row .eyebrow { width: 100%; }
+.email { font-family: var(--font-mono); font-size: clamp(.92rem, 2.2vw, 1.12rem); user-select: all; overflow-wrap: anywhere; }
+.email-row .btn.copy { padding: 6px 12px; font-size: .68rem; justify-content: center; }
 
 footer {
   border-top: 1px solid var(--rule); padding-top: 22px; margin-top: 8px;

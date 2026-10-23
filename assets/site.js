@@ -28,6 +28,23 @@
 
   document.querySelectorAll('[data-wake]').forEach(initWake);
 
+  document.querySelectorAll('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var text = b.getAttribute('data-copy');
+      function done(msg) { b.textContent = msg; setTimeout(function () { b.textContent = 'Copy'; }, 1800); }
+      function fallback() {
+        var el = document.getElementById('email');
+        if (el && window.getSelection) {
+          var r = document.createRange(); r.selectNodeContents(el);
+          var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        }
+        done('Selected');
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function () { done('Copied'); }, fallback);
+      else fallback();
+    });
+  });
+
   // Looping CAD clips: respect reduced motion, and only play while on screen.
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var clips = document.querySelectorAll('.cad-motion video');

@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:wght@800&family=Big+Shoulders:wght@600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/site.css?v=5">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Zayd Houachmi","alternateName":"Mohamed Zayed Houachmi","jobTitle":"Mechanical Engineering Co-op Student","affiliation":{"@type":"CollegeOrUniversity","name":"University of Ottawa"},"address":{"@type":"PostalAddress","addressLocality":"Ottawa","addressRegion":"ON","addressCountry":"CA"},"email":"mailto:mozaydhouachmi@gmail.com","url":"https://zaydhouachmi.github.io/","sameAs":["https://www.linkedin.com/in/zayd-houachmi-b5578735a/","https://github.com/ZaydHouachmi"],"knowsLanguage":["en","fr","ar"],"knowsAbout":["SolidWorks","ANSYS CFD","Aerodynamics","Composite layup","Wind resource assessment","WAsP","Python"]}
 </script>
@@ -171,6 +171,36 @@
           </div>
         </a>
       </div>
+
+      <div class="soft" id="software">
+        <div class="soft-head">
+          <h3>Software I've shipped</h3>
+          <p>When the engineering needs a tool, I build it. These are live, and the code is public.</p>
+        </div>
+        <div class="soft-grid">
+          <article>
+            <div class="num"><span class="eyebrow">Hackathon · Solo</span><span class="eyebrow">Sep 2026</span></div>
+            <h4>SpeakGov</h4>
+            <p>Fill in a government benefit form by talking, in English or French, without needing to read it. Speech or text goes to Gemini, the form fills itself in, and ElevenLabs asks out loud for anything missing. Built solo at Hack the Hill III.</p>
+            <div class="tags"><span class="tag">Next.js</span><span class="tag">Gemini</span><span class="tag">ElevenLabs</span><span class="tag">Auth0</span><span class="tag">Accessibility</span></div>
+            <div class="links"><a href="https://speakgov.com" target="_blank" rel="noopener">speakgov.com ↗</a><a href="https://github.com/ZaydHouachmi/ottawa-voice" target="_blank" rel="noopener">Code ↗</a></div>
+          </article>
+          <article>
+            <div class="num"><span class="eyebrow">My business</span><span class="eyebrow">2026 – now</span></div>
+            <h4>Tutoring Ottawa</h4>
+            <p>The bilingual booking site for my tutoring business. Every request is validated on the server, rate limited and screened by a honeypot, then stored in a Postgres table that only the server can touch.</p>
+            <div class="tags"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Supabase</span><span class="tag">Vitest</span><span class="tag">CI</span></div>
+            <div class="links"><a href="https://tutoring-platform-mauve.vercel.app" target="_blank" rel="noopener">Live site ↗</a><a href="https://github.com/ZaydHouachmi/tutoring-platform" target="_blank" rel="noopener">Code ↗</a></div>
+          </article>
+          <article>
+            <div class="num"><span class="eyebrow">Internship tool</span><span class="eyebrow">Summer 2026</span></div>
+            <h4>Wind Farm Energy Assessment</h4>
+            <p>The 8-module Streamlit app behind project 03: Weibull fitting, Jensen and Ainslie wakes (SciPy RK45), a six-factor loss cascade, example inputs and pytest tests.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">NumPy</span><span class="tag">SciPy</span><span class="tag">Streamlit</span><span class="tag">pytest</span></div>
+            <div class="links"><a href="work/wind-farm.html">Case study →</a><a href="https://github.com/ZaydHouachmi/wind-farm-energy-assessment" target="_blank" rel="noopener">Code ↗</a></div>
+          </article>
+        </div>
+      </div>
     </section>
 
     <!-- Live model -->
@@ -264,7 +294,7 @@
       <div class="also">
         <h3>Beyond engineering</h3>
         <div class="also-grid">
-          <div><span class="eyebrow">Aug 2026 – Present</span><strong>Founder, Tutoring Ottawa</strong><p>Bilingual tutoring business for Grades 7–12. I built the booking platform in Next.js and TypeScript on Supabase/Postgres.</p></div>
+          <div><span class="eyebrow">Aug 2026 – Present</span><strong>Founder, Tutoring Ottawa</strong><p>Bilingual tutoring business for Grades 7–12. I built the <a href="https://tutoring-platform-mauve.vercel.app" target="_blank" rel="noopener">booking platform</a> in Next.js and TypeScript on Supabase/Postgres.</p></div>
           <div><span class="eyebrow">May 2026 – Present</span><strong>Junior STEM Instructor, Young Engineers</strong><p>Teaching mechanics, structures and problem-solving to young learners through hands-on builds.</p></div>
           <div><span class="eyebrow">Jun 2025 – Present</span><strong>Client Services, Norton Rose Fulbright</strong><p>Logistics and client communication for corporate meetings in a deadline-driven, confidential setting.</p></div>
           <div><span class="eyebrow">Feb – Jun 2025</span><strong>Founder &amp; President, STEM Club</strong><p>Grew a high-school STEM club past 50 members in one semester and ran peer tutoring for 10–30 students.</p></div>
@@ -285,11 +315,11 @@
             <tr><td>ANSYS CFD</td><td>Full-car aerodynamic simulation, design iteration on wings, undertray, diffuser and sidepods</td><td><a href="work/formula-sae.html">FSAE wings →</a></td></tr>
             <tr><td>Validation</td><td>CFD against track data (within 10%), my Python tool against WAsP, client test plans</td><td><a href="work/formula-sae.html">FSAE →</a> <a href="work/wind-farm.html">Wind farm →</a></td></tr>
             <tr><td>Fabrication</td><td>Carbon-fibre layup, 3D printing (PLA, TPU), laser-cut acrylic</td><td><a href="work/formula-sae.html">FSAE →</a> <a href="work/zeiku.html">ZEIKU →</a></td></tr>
-            <tr><td>Python</td><td>8-module numerical model, ODE integration (RK45), NumPy, Streamlit interface</td><td><a href="work/wind-farm.html">Wind farm →</a></td></tr>
+            <tr><td>Python</td><td>8-module numerical model, ODE integration (SciPy RK45), NumPy, Streamlit interface, pytest</td><td><a href="work/wind-farm.html">Wind farm →</a> <a href="https://github.com/ZaydHouachmi/wind-farm-energy-assessment" target="_blank" rel="noopener">Code ↗</a></td></tr>
             <tr><td>WAsP</td><td>Wind Atlas generalisation, resource grids, turbine-site AEP, terrain validity (RIX)</td><td><a href="work/wind-farm.html">Wind farm →</a></td></tr>
             <tr><td>Engineering analysis</td><td>Airflow sizing, Weibull statistics, power curves, lift and drag coefficients</td><td><a href="work/zeiku.html">ZEIKU →</a> <a href="work/formula-sae.html">FSAE →</a></td></tr>
             <tr><td>Leadership</td><td>Led a five-person client project team, founded a business and a 50-member club</td><td><a href="work/zeiku.html">ZEIKU →</a> <a href="#experience">Experience →</a></td></tr>
-            <tr><td>Software</td><td>C, C++, C#, JavaScript, Next.js/TypeScript, Arduino</td><td><a href="#experience">Tutoring Ottawa →</a></td></tr>
+            <tr><td>Software</td><td>Next.js/TypeScript web apps with AI and speech APIs, Postgres, CI. Also C, C++, C#, Arduino</td><td><a href="#software">SpeakGov →</a> <a href="#software">Tutoring Ottawa →</a></td></tr>
             <tr><td>Languages</td><td>English and French fluent (DELF certified), Arabic native. Reports and manuals in French and English</td><td><a href="work/wind-farm.html">Report →</a></td></tr>
           </tbody>
         </table>
@@ -324,6 +354,6 @@
     </footer>
   </main>
 </div>
-<script src="assets/site.js"></script>
+<script src="assets/site.js?v=5"></script>
 </body>
 </html>

@@ -362,6 +362,20 @@ ul.points li::before {
   .flow > div:not(:last-child)::after { content: "↓"; right: auto; left: 18px; top: auto; bottom: -9px; transform: none; }
 }
 
+.soft { margin-top: 56px; padding-top: 36px; border-top: 1px dashed var(--rule); }
+.soft-head { display: flex; justify-content: space-between; align-items: end; gap: 8px 24px; flex-wrap: wrap; margin-bottom: 20px; }
+.soft-head h3 { font-size: clamp(1.4rem, 3vw, 1.8rem); margin: 0; }
+.soft-head p { color: var(--muted); max-width: 46ch; }
+.soft-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: 16px; }
+.soft-grid article { border: 1.5px solid var(--rule); background: var(--surface); padding: 20px 22px; display: grid; gap: 12px; align-content: start; grid-template-rows: auto auto 1fr auto auto; transition: border-color .15s; }
+.soft-grid article:hover { border-color: var(--line); }
+.soft-grid .num { display: flex; justify-content: space-between; gap: 8px; }
+.soft-grid h4 { font-family: var(--font-head); font-weight: 800; font-size: 1.45rem; letter-spacing: .02em; text-transform: uppercase; margin: 0; line-height: 1.05; }
+.soft-grid p { font-size: .94rem; color: var(--muted); line-height: 1.5; }
+.soft-grid .links { display: flex; flex-wrap: wrap; gap: 8px 18px; padding-top: 10px; border-top: 1px solid var(--rule); }
+.soft-grid .links a { font-family: var(--font-mono); font-size: .76rem; letter-spacing: .05em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid var(--rule); padding-bottom: 1px; }
+.soft-grid .links a:hover { color: var(--accent); border-color: var(--accent); }
+
 .also { margin-top: 48px; padding-top: 32px; border-top: 1px dashed var(--rule); }
 .also h3 { margin-bottom: 18px; }
 .also-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 14px; }

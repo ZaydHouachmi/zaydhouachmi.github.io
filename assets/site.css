@@ -305,7 +305,24 @@ ul.points li::before {
 .ds-row > div { background: #0A2342; padding: 10px 12px; font-family: var(--font-mono); font-size: .78rem; }
 
 /* ---------- Wake demo ---------- */
-.wake { border: 1.5px solid var(--line); background: var(--surface); }
+/* The wake demo always uses the light, red-on-white palette, whatever the page theme */
+.wake {
+  --bg: #ECEEEA;
+  --surface: #FFFFFF;
+  --fg: #18222D;
+  --muted: #56616E;
+  --grid: rgba(24,34,45,.075);
+  --rule: rgba(24,34,45,.18);
+  --line: #18222D;
+  --accent: #C62828;
+  --accent-soft: rgba(198,40,40,.1);
+  --accent-contrast: #FFFFFF;
+  color-scheme: light;
+  color: var(--fg);
+  border: 1.5px solid #CFE4F7;
+  background: var(--surface);
+}
+.wake a { color: var(--accent); }
 .wake-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); }
 .wake-canvas { position: relative; border-right: 1px solid var(--rule); min-width: 0; }
 .wake-canvas canvas { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; }

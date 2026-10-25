@@ -95,7 +95,7 @@
       var d = x.getImageData(0, 0, 1, 1).data; return [d[0], d[1], d[2]];
     }
     function readColors() {
-      var cs = getComputedStyle(root);
+      var cs = getComputedStyle(el);
       ['--surface', '--accent', '--fg', '--muted', '--rule', '--grid', '--bg'].forEach(function (n) {
         colors[n] = cs.getPropertyValue(n).trim();
       });

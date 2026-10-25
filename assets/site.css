@@ -570,3 +570,5 @@ figcaption b { color: var(--accent); font-weight: 500; }
 .fail, .pass { font-family: var(--font-mono); font-size: .74rem; letter-spacing: .04em; text-transform: uppercase; font-weight: 500; margin-right: 4px; }
 .fail { color: var(--accent); }
 .pass { color: var(--ok); }
+.zeiku-lead { grid-template-columns: minmax(0, 2.18fr) minmax(0, 1.37fr); }
+@media (max-width: 920px) { .zeiku-lead { grid-template-columns: minmax(0, 1fr); } }

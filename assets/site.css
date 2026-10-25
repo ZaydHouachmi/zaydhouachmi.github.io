@@ -546,3 +546,5 @@ figcaption b { color: var(--accent); font-weight: 500; }
 @media (prefers-reduced-motion: reduce) {
   .feature, .feature .media img, .btn, .go span { transition: none; }
 }
+.soft-earlier { margin-top: 16px; font-size: .92rem; color: var(--muted); line-height: 1.6; }
+.soft-earlier .eyebrow { color: var(--accent); margin-right: 8px; }

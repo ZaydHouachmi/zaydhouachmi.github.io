@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:wght@800&family=Big+Shoulders:wght@600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css?v=7">
+<link rel="stylesheet" href="../assets/site.css?v=8">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -166,6 +166,64 @@
       </div>
     </div>
 
+    <section class="block" style="margin-top: 64px;">
+      <div class="label">Iteration</div>
+      <h2>From prototype 1 to final</h2>
+      <p class="section-intro">Prototype 1 was tested in November 2025 and reviewed with the client on November 3. Each failure turned into a design change in the final version.</p>
+
+      <div class="table-wrap">
+        <table class="iter-table">
+          <thead><tr><th>Where it came from</th><th>Prototype 1</th><th>Final version</th></tr></thead>
+          <tbody>
+            <tr><td>Door test</td><td><span class="fail">Failed.</span> The removable door hit the top of the box and cracked it on every attempt to close it.</td><td>A sliding door that runs in two rails, with the fit and tolerances reworked.</td></tr>
+            <tr><td>Detection test</td><td><span class="fail">Failed.</span> The LED stayed off after the swab had dried, until someone stirred the air by hand.</td><td>A 5&nbsp;V, 40&nbsp;mm fan keeps filtered air moving past the sensors.</td></tr>
+            <tr><td>Client review</td><td>Fan mounted on the back wall. The client asked for it in the centre.</td><td>Fan moved to the centre of the box for more even airflow.</td></tr>
+            <tr><td>Capacity</td><td>One swab sensor and one LED.</td><td>Three sensors (ambient plus one per swab) and two LEDs, for two swabs side by side.</td></tr>
+            <tr><td>Load test</td><td>3&nbsp;mm panels flexed visibly from 7.8&nbsp;N.</td><td>PLA brackets added in the corners and along the edges.</td></tr>
+            <tr><td>Client review</td><td><span class="pass">Approved.</span> Acrylic wipes clean, and the compact size travels well between sites.</td><td>Kept.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="case-body" style="margin-top: 44px;">
+        <div class="stack">
+          <div class="prose">
+            <h3>Load-testing the panels</h3>
+            <p>The 3&nbsp;mm acrylic panels take the handle load and the knocks of transport. We loaded them in ten steps with water, from 100&nbsp;mL to 1000&nbsp;mL (0.98&nbsp;N to 9.81&nbsp;N), and watched for deflection.</p>
+          </div>
+          <div class="readings three compact">
+            <div><div class="v">6.9<small>N</small></div><div class="d">Fully rigid up to this load (700&nbsp;mL)</div></div>
+            <div><div class="v">7.8<small>N</small></div><div class="d">First visible flex, side panels</div></div>
+            <div><div class="v">8.8<small>N</small></div><div class="d">First visible flex, roof</div></div>
+          </div>
+          <p class="note">No permanent deformation at any step, so the acrylic stayed elastic. For a handle that carries the whole box, the recommendation was internal ribs or 4–5&nbsp;mm sheet.</p>
+
+          <div class="prose">
+            <h3>Checked against the specs</h3>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Constraint</th><th>Target</th><th>Final</th></tr></thead>
+                <tbody>
+                  <tr><td>Length and width</td><td class="mono">&lt; 30.48 cm</td><td class="mono">19 cm <span class="pass">✓</span></td></tr>
+                  <tr><td>Height</td><td class="mono">&lt; 40.64 cm</td><td class="mono">29 cm <span class="pass">✓</span></td></tr>
+                  <tr><td>Volume, to fit the drying cabinet</td><td class="mono">&lt; 37,755 cm³</td><td class="mono">10,469 cm³ <span class="pass">✓</span></td></tr>
+                  <tr><td>Swab spacing</td><td class="mono">&gt; 2 cm</td><td class="mono">≥ 3 cm, tested <span class="pass">✓</span></td></tr>
+                  <tr><td>Washable material</td><td class="mono">Non-porous</td><td class="mono">Acrylic <span class="pass">✓</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="stack">
+          <figure>
+            <div class="plate photo" style="aspect-ratio: 3 / 4; max-height: 620px;"><img src="../assets/zeiku-prototype1.jpg" width="720" height="960" alt="Prototype 1 on a table during testing, with the green dryness LED lit and the electronics on a shelf inside the acrylic box" loading="lazy"></div>
+            <figcaption><b>Fig. 4.5</b> Prototype 1 during testing, with the dryness LED lit.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
     <nav class="next" aria-label="More projects">
       <a href="wind-farm.html"><span class="eyebrow">← Previous project</span><span class="t">Wind farm energy yield</span></a>
       <a class="fwd" href="visual-shield.html"><span class="eyebrow">Next project →</span><span class="t">Clip-on visual shield</span></a>
@@ -177,6 +235,6 @@
     </footer>
   </main>
 </div>
-<script src="../assets/site.js?v=7"></script>
+<script src="../assets/site.js?v=8"></script>
 </body>
 </html>

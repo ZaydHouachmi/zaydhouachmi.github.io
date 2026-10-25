@@ -565,3 +565,8 @@ figcaption b { color: var(--accent); font-weight: 500; }
 }
 .soft-earlier { margin-top: 16px; font-size: .92rem; color: var(--muted); line-height: 1.6; }
 .soft-earlier .eyebrow { color: var(--accent); margin-right: 8px; }
+.iter-table td:first-child { font-family: var(--font-mono); font-size: .76rem; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+.iter-table td:last-child { font-weight: 500; }
+.fail, .pass { font-family: var(--font-mono); font-size: .74rem; letter-spacing: .04em; text-transform: uppercase; font-weight: 500; margin-right: 4px; }
+.fail { color: var(--accent); }
+.pass { color: var(--ok); }

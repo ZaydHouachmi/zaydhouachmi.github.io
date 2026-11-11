@@ -575,7 +575,7 @@ figcaption b { color: var(--accent); font-weight: 500; }
 .fail, .pass { font-family: var(--font-mono); font-size: .74rem; letter-spacing: .04em; text-transform: uppercase; font-weight: 500; margin-right: 4px; }
 .fail { color: var(--accent); }
 .pass { color: var(--ok); }
-.zeiku-lead { grid-template-columns: minmax(0, 2.18fr) minmax(0, 1.37fr); }
+.zeiku-lead { grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr) minmax(0, .95fr); align-items: start; }
 @media (max-width: 920px) { .zeiku-lead { grid-template-columns: minmax(0, 1fr); } }
 
 /* Project cards: taps on the media always reach the card link (no video controls or play buttons in the way) */

@@ -115,12 +115,13 @@ header.bar .wrap {
   padding-block: 4px; border-bottom: 1px solid transparent;
 }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--fg); border-color: var(--accent); }
-.theme-toggle {
+.theme-toggle, .lang-toggle {
   font-family: var(--font-mono); font-size: .68rem; letter-spacing: .06em; text-transform: uppercase;
   color: var(--muted); background: transparent; border: 1px solid var(--rule);
   border-radius: 3px; padding: 6px 10px; cursor: pointer;
 }
-.theme-toggle:hover { color: var(--fg); border-color: var(--accent); }
+.theme-toggle:hover, .lang-toggle:hover { color: var(--fg); border-color: var(--accent); }
+.lang-toggle { min-width: 2.6rem; }
 
 /* ---------- Type & shared ---------- */
 .label {
@@ -536,7 +537,8 @@ figcaption b { color: var(--accent); font-weight: 500; }
   .nav { flex-wrap: nowrap; overflow-x: auto; width: 100%; gap: 18px; padding-bottom: 4px; scrollbar-width: none; }
   .nav::-webkit-scrollbar { display: none; }
   .nav a { white-space: nowrap; }
-  .theme-toggle { margin-left: auto; flex: none; }
+  .lang-toggle { margin-left: auto; flex: none; }
+  .theme-toggle { flex: none; }
 }
 @media (max-width: 560px) {
   body { font-size: 16px; }

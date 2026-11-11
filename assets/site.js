@@ -1,4 +1,5 @@
 (function () {
+  function Z(t) { return window.zhT ? window.zhT(t) : t; }
   var root = document.documentElement;
   var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
 
@@ -29,18 +30,20 @@
   document.querySelectorAll('[data-wake]').forEach(initWake);
 
   document.querySelectorAll('[data-copy]').forEach(function (b) {
+    b.textContent = Z('Copy');
+    document.addEventListener('langchange', function () { b.textContent = Z('Copy'); });
     b.addEventListener('click', function () {
       var text = b.getAttribute('data-copy');
-      function done(msg) { b.textContent = msg; setTimeout(function () { b.textContent = 'Copy'; }, 1800); }
+      function done(msg) { b.textContent = msg; setTimeout(function () { b.textContent = Z('Copy'); }, 1800); }
       function fallback() {
         var el = document.getElementById('email');
         if (el && window.getSelection) {
           var r = document.createRange(); r.selectNodeContents(el);
           var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
         }
-        done('Selected');
+        done(Z('Selected'));
       }
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function () { done('Copied'); }, fallback);
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function () { done(Z('Copied')); }, fallback);
       else fallback();
     });
   });
@@ -128,7 +131,7 @@
       return Math.sqrt(sum);
     }
     function compass(d) {
-      return ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'][Math.round(d / 45) % 8];
+      return ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'].map(Z)[Math.round(d / 45) % 8];
     }
 
     function draw() {
@@ -224,9 +227,9 @@
       ctx.restore();
       ctx.textAlign = 'left';
       ctx.fillStyle = colors['--muted'];
-      ctx.fillText('wind', ax + 26, ay + 4);
+      ctx.fillText(Z('wind'), ax + 26, ay + 4);
       ctx.textAlign = 'right';
-      ctx.fillText('N ↑   grid 100 m', W - 12, H - 12);
+      ctx.fillText(Z('N ↑   grid 100 m'), W - 12, H - 12);
 
       var free = power(ws) * T.length;
       var tot = results.reduce(function (a, r) { return a + r.p; }, 0);
@@ -242,7 +245,10 @@
           '" style="width:' + pct.toFixed(1) + '%"></span></span><span class="val">' + r.v.toFixed(1) + ' m/s</span></div>';
       });
       outs.bars.innerHTML = html;
-      canvas.setAttribute('aria-label', 'Wake map for wind from ' + dir + ' degrees at ' + ws.toFixed(1) +
+      var frLang = window.zhLang && window.zhLang() === 'fr';
+      canvas.setAttribute('aria-label', frLang
+        ? 'Carte des sillages pour un vent de ' + dir + ' degrés à ' + ws.toFixed(1).replace('.', ',') + ' mètres par seconde. Production du parc : ' + (tot / 1000).toFixed(2).replace('.', ',') + ' mégawatts, perte par sillage : ' + loss.toFixed(1).replace('.', ',') + ' pour cent.'
+        : 'Wake map for wind from ' + dir + ' degrees at ' + ws.toFixed(1) +
         ' metres per second. Farm output ' + (tot / 1000).toFixed(2) + ' megawatts, wake loss ' + loss.toFixed(1) + ' percent.');
     }
 
@@ -256,7 +262,7 @@
     }
     function setSpin(on) {
       spinning = on;
-      spinBtn.textContent = on ? 'Stop rotating' : 'Rotate the wind';
+      spinBtn.textContent = Z(on ? 'Stop rotating' : 'Rotate the wind');
       spinBtn.setAttribute('aria-pressed', String(on));
       if (on) raf = requestAnimationFrame(tick); else cancelAnimationFrame(raf);
     }
@@ -276,6 +282,11 @@
       spinBtn.addEventListener('click', function () { setSpin(!spinning); });
     }
     document.addEventListener('themechange', function () { readColors(); draw(); });
+    document.addEventListener('langchange', function () {
+      if (spinBtn) spinBtn.textContent = Z(spinning ? 'Stop rotating' : 'Rotate the wind');
+      draw();
+    });
+    if (spinBtn) spinBtn.textContent = Z('Rotate the wind');
     if (window.ResizeObserver) new ResizeObserver(function () { draw(); }).observe(canvas);
     else window.addEventListener('resize', draw);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);

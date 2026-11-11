@@ -52,7 +52,7 @@
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var clips = document.querySelectorAll('.cad-motion video');
   clips.forEach(function (v) {
-    if (reduceMotion) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; }
+    if (reduceMotion) { v.removeAttribute('autoplay'); v.pause(); v.controls = !v.closest('a'); }
   });
   if (!reduceMotion && 'IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {

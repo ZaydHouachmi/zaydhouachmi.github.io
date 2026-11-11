@@ -537,8 +537,11 @@ figcaption b { color: var(--accent); font-weight: 500; }
   .nav { flex-wrap: nowrap; overflow-x: auto; width: 100%; gap: 18px; padding-bottom: 4px; scrollbar-width: none; }
   .nav::-webkit-scrollbar { display: none; }
   .nav a { white-space: nowrap; }
-  .lang-toggle { margin-left: auto; flex: none; }
-  .theme-toggle { flex: none; }
+  /* Keep the two switches visible: pin them to the top row, outside the scrolling menu */
+  header.bar .wrap { position: relative; }
+  .nav .lang-toggle, .nav .theme-toggle { position: absolute; top: 10px; margin: 0; flex: none; }
+  .nav .theme-toggle { right: 0; min-width: 5.6rem; }
+  .nav .lang-toggle { right: calc(5.6rem + 8px); }
 }
 @media (max-width: 560px) {
   body { font-size: 16px; }
@@ -574,3 +577,6 @@ figcaption b { color: var(--accent); font-weight: 500; }
 .pass { color: var(--ok); }
 .zeiku-lead { grid-template-columns: minmax(0, 2.18fr) minmax(0, 1.37fr); }
 @media (max-width: 920px) { .zeiku-lead { grid-template-columns: minmax(0, 1fr); } }
+
+/* Project cards: taps on the media always reach the card link (no video controls or play buttons in the way) */
+.feature video { pointer-events: none; }

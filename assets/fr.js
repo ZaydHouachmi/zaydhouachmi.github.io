@@ -436,6 +436,7 @@ window.ZH_FR = {
 "7.85<small>m/s</small>": "7,85<small>m/s</small>",
 "3.149<small>GWh/yr</small>": "3,149<small>GWh/an</small>",
 "5.1→17.6<small>%</small>": "5,1→17,6<small>%</small>",
-"Cf = E<sub>net</sub> [kWh/yr] / (Σ P<sub>rated</sub> [kW] × 8760 h)": "Cf = E<sub>net</sub> [kWh/an] / (Σ P<sub>rated</sub> [kW] × 8760 h)"
+"Cf = E<sub>net</sub> [kWh/yr] / (Σ P<sub>rated</sub> [kW] × 8760 h)": "Cf = E<sub>net</sub> [kWh/an] / (Σ P<sub>rated</sub> [kW] × 8760 h)",
+"Greenard Consulting logo": "Logo de Greenard Consulting"
 };
 window.ZH_UI = {"Copy": "Copier", "Copied": "Copié", "Selected": "Sélectionné", "wind": "vent", "Stop rotating": "Arrêter la rotation", "Rotate the wind": "Faire tourner le vent", "SW": "SO", "W": "O", "NW": "NO", "N ↑   grid 100 m": "N ↑   grille 100 m"};

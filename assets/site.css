@@ -580,3 +580,8 @@ figcaption b { color: var(--accent); font-weight: 500; }
 
 /* Project cards: taps on the media always reach the card link (no video controls or play buttons in the way) */
 .feature video { pointer-events: none; }
+
+/* Company logo as a card image: sits on white so the logo's own background disappears, shown at its native size */
+.feature .media.logo { background: #fff; }
+.feature .media.logo img { width: auto; height: auto; max-width: min(78%, 360px); padding: 0; object-fit: contain; }
+.feature:hover .media.logo img { transform: none; }

@@ -585,3 +585,16 @@ figcaption b { color: var(--accent); font-weight: 500; }
 .feature .media.logo { background: #fff; }
 .feature .media.logo img { width: auto; height: auto; max-width: min(78%, 360px); padding: 0; object-fit: contain; }
 .feature:hover .media.logo img { transform: none; }
+
+/* Wide team photo as a card image: show all five people instead of cropping the edges */
+.feature .media.team img { width: 100%; height: auto; max-height: 100%; object-fit: contain; }
+
+/* The availability badge is text only: no green status dot */
+.status i { display: none; }
+/* The bands above and below the photo are a blurred copy of the same photo, so the card looks filled */
+.feature .media.team { position: relative; background: #3a3631; }
+.feature .media.team::before {
+  content: ""; position: absolute; inset: -20px; background: url("zeiku-team.jpg") center / cover no-repeat;
+  filter: blur(24px) brightness(.7); transform: scale(1.1);
+}
+.feature .media.team img { position: relative; z-index: 1; }

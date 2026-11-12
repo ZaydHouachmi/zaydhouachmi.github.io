@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Wind Farm Energy Yield | Zayd Houachmi</title>
-<meta name="description" content="Internship at Greenard, Casablanca: WAsP wind resource assessment from a 10 m mast to turbine annual energy, plus a Python wake and energy-yield tool validated against WAsP.">
+<meta name="description" content="Internship at Greenard, Casablanca: WAsP wind resource assessment from a weather-station wind record to turbine annual energy, plus a Python wake and energy-yield tool validated against WAsP.">
 <link rel="canonical" href="https://zaydhouachmi.github.io/work/wind-farm.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Wind Farm Energy Yield | Zayd Houachmi">
@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css?v=23">
+<link rel="stylesheet" href="../assets/site.css?v=24">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -43,7 +43,7 @@
       <div class="label rise">Project 03 · Wind resource engineering</div>
       <div class="case-top">
         <div>
-          <h1 class="rise d1">From a 10&nbsp;m mast to a wind farm's annual energy</h1>
+          <h1 class="rise d1">From a weather-station record to a wind farm's annual energy</h1>
           <p class="lede rise d2">As a Renewable Energy Intern at Greenard Consulting in Casablanca, I learned the industry workflow for assessing a wind site in WAsP. Then I wrote my own Python tool that reproduces the core of it (wake models, Weibull integration and a loss cascade) and checked it against WAsP.</p>
         </div>
         <div class="titleblock rise d2">
@@ -69,7 +69,7 @@
       <div class="stack">
         <div class="prose">
           <h3>The problem</h3>
-          <p>Wind is measured at one mast, often low and in the wrong place, but turbines stand higher and on different terrain. Power in the wind scales with the cube of speed:</p>
+          <p>Wind is measured at one station, often low and in the wrong place, but turbines stand higher and on different terrain. Power in the wind scales with the cube of speed:</p>
           <div class="calc"><span class="k">power</span>P = ½ · ρ · A · V³<br><span class="k">Betz limit</span>C<sub>p,max</sub> = 16/27 ≈ <span class="ok">0.593</span></div>
           <p>So a 1&nbsp;m/s error in mean speed can make or break a project. The job is to carry a measurement correctly across height, terrain roughness and relief, then turn it into energy.</p>
         </div>
@@ -238,8 +238,8 @@
     </footer>
   </main>
 </div>
-<script src="../assets/fr.js?v=21"></script>
-<script src="../assets/i18n.js?v=21"></script>
-<script src="../assets/site.js?v=21"></script>
+<script src="../assets/fr.js?v=22"></script>
+<script src="../assets/i18n.js?v=22"></script>
+<script src="../assets/site.js?v=22"></script>
 </body>
 </html>

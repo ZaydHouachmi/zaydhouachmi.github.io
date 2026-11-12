@@ -598,3 +598,73 @@ figcaption b { color: var(--accent); font-weight: 500; }
   filter: blur(24px) brightness(.7); transform: scale(1.1);
 }
 .feature .media.team img { position: relative; z-index: 1; }
+
+/* =====================================================================
+   Plainer look: paper background, one muted accent, serif headings,
+   ordinary sentence-case labels. Overrides the blueprint styling above.
+   ===================================================================== */
+:root {
+  --bg: #FAF8F4; --surface: #FFFFFF; --plate: #F1EEE8;
+  --fg: #1F2328; --muted: #5E656E; --grid: transparent;
+  --rule: #E2DDD3; --line: #C9C3B8;
+  --accent: #1F4E79; --accent-soft: rgba(31,78,121,.08); --accent-contrast: #FFFFFF; --ok: #2F7A4B;
+  --font-display: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-head: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+}
+:root[data-theme="dark"] {
+  --bg: #16191D; --surface: #1D2126; --plate: #E9E6E0;
+  --fg: #E9E7E2; --muted: #A3A8AF; --grid: transparent;
+  --rule: #2F353C; --line: #46505A;
+  --accent: #8DB4DB; --accent-soft: rgba(141,180,219,.12); --accent-contrast: #10151A; --ok: #6FD39A;
+}
+.sheet { background-image: none; }
+.rise, .rise.d1, .rise.d2, .rise.d3, .rise.d4 { animation: none; }
+
+/* headings */
+h1, h2, h3, h4, .wordmark, .feature h3, .next .t, .flow strong, .titleblock .big, .soft-grid h4,
+.readings .v, .wake-out .v, .tl-what h3, .skills-table td:first-child {
+  font-family: var(--font-display); text-transform: none; letter-spacing: 0; font-weight: 600;
+}
+h1 { font-size: clamp(2.5rem, 6vw, 3.8rem); line-height: 1.08; max-width: 20ch; }
+h2 { font-size: clamp(1.7rem, 3.4vw, 2.25rem); line-height: 1.15; }
+h3 { line-height: 1.25; }
+.feature h3 { font-size: clamp(1.5rem, 2.6vw, 1.9rem); line-height: 1.15; }
+.wordmark { font-size: 1.15rem; font-weight: 700; }
+.readings .v { font-weight: 600; font-variant-numeric: lining-nums tabular-nums; }
+.flow strong, .next .t { font-size: 1.15rem; }
+
+/* small labels: plain sans, sentence case */
+.nav a, .theme-toggle, .lang-toggle, .label, .eyebrow, .btn, .status, .go, .tag, .tl-when, figcaption, th,
+.crumb, .k, .titleblock .k, .fail, .pass, .next .eyebrow, .callout, .ctrl label, .wake-out .k, .skip,
+.iter-table td:first-child, .soft-grid .links a, footer, .readings .d, .email-row .eyebrow {
+  font-family: var(--font-body); text-transform: none; letter-spacing: 0;
+}
+.nav a { font-size: .95rem; }
+.theme-toggle, .lang-toggle { font-size: .85rem; border-radius: 4px; }
+.label { font-size: .95rem; color: var(--accent); }
+.eyebrow { font-size: .88rem; color: var(--muted); }
+.btn { font-size: .95rem; border-radius: 4px; }
+.go { font-size: .95rem; font-weight: 600; color: var(--accent); }
+.tl-when, figcaption, .titleblock .k, .wake-out .k, .ctrl label, .iter-table td:first-child { font-size: .85rem; }
+.titleblock .k, .iter-table td:first-child, .tl-when { color: var(--muted); }
+th { font-size: .9rem; }
+.tag { font-size: .82rem; background: transparent; color: var(--muted); border: 1px solid var(--rule); }
+.tag.hot { color: var(--accent); border-color: var(--accent); background: transparent; }
+.status { font-size: .95rem; background: transparent; border: none; padding: 0; color: var(--muted); }
+.live-tag { display: none; }
+figcaption b { font-weight: 600; }
+
+/* home page */
+.hero-grid { grid-template-columns: minmax(0, 1fr); max-width: 760px; }
+.hero { padding-top: 56px; }
+.pitch { font-size: 1.15rem; }
+.role { font-size: 1.05rem; color: var(--muted); }
+.feature { border-radius: 4px; border: 1px solid var(--rule); background: var(--surface); box-shadow: none; }
+.feature:hover { transform: none; box-shadow: 0 6px 22px -14px rgba(0,0,0,.35); }
+.feature:hover .media img { transform: none; }
+.feature .num { align-items: baseline; }
+.feature .sum { color: var(--fg); opacity: .85; }
+.block { padding-top: 72px; }
+.hero h1 { text-transform: none; font-size: clamp(2.6rem, 6vw, 4rem); line-height: 1.05; max-width: none; margin: 10px 0 14px; }
+.hero .role { font-family: var(--font-body); font-weight: 500; text-transform: none; letter-spacing: 0; font-size: 1.1rem; color: var(--muted); }
+.case-hero h1, .case-top h1 { text-transform: none; font-size: clamp(2.1rem, 4.6vw, 3.2rem); line-height: 1.12; max-width: 22ch; letter-spacing: 0; font-weight: 600; }

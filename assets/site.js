@@ -10,9 +10,9 @@
   function syncToggles() {
     var dark = isDark();
     document.querySelectorAll('.theme-toggle').forEach(function (b) {
-      b.textContent = dark ? 'Vellum' : 'Blueprint';
+      b.textContent = Z(dark ? 'Light' : 'Dark');
       b.setAttribute('aria-pressed', String(dark));
-      b.title = dark ? 'Switch to light theme' : 'Switch to dark theme';
+      b.title = Z(dark ? 'Switch to light theme' : 'Switch to dark theme');
     });
     document.dispatchEvent(new CustomEvent('themechange'));
   }
@@ -25,6 +25,7 @@
     });
   });
   if (mq && mq.addEventListener) mq.addEventListener('change', syncToggles);
+  document.addEventListener('langchange', syncToggles);
   syncToggles();
 
   document.querySelectorAll('[data-wake]').forEach(initWake);
